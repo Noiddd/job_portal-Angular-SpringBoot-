@@ -1,0 +1,27 @@
+http://localhost:8080/jobseeker/all
+
+education
+[
+    {
+    "institute": "NUS",
+    "qualification": "Degree in Compute Science",
+    "startDate":"1/1/2022",
+    "endDate": "1/12/2024"
+    },
+     {
+    "institute": "Singapore Poly",
+    "qualification": "Diploma in Compute Science",
+    "startDate":"1/1/2020",
+    "endDate": "1/12/2022"
+    }
+]
+
+
+jobseeker
+{
+    "firstName":"Dion",
+    "lastName": "Ang",
+    "phone": "12345678",
+    "email": "dion@gmail.com",
+    "password": "password1"
+}
