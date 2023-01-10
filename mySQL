@@ -1,0 +1,74 @@
+// mySQL
+
+/*Entity*/
+CREATE TABLE `job_seeker` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(100) NOT NULL,
+  `last_name` varchar(100) NOT NULL,
+  `phone` varchar(12) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  
+  PRIMARY KEY (`id`)
+  
+) engine=InnoDB auto_increment=1 default charset=latin1;
+
+select * from job_seeker;
+
+CREATE TABLE IF NOT EXISTS `employer` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  
+  PRIMARY KEY (`id`)
+  
+) engine=InnoDB auto_increment=1 default charset=latin1;
+
+
+
+/*Job seeker foriegn key*/
+CREATE TABLE `education` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `institute` varchar(255) NOT NULL,
+  `qualification` varchar(255) NOT NULL,
+  `start_date` varchar(255) NOT NULL,
+  `end_date` varchar(255) NOT NULL,
+  `job_seeker_id` int NOT NULL,
+  
+  PRIMARY KEY (`id`),
+  
+  FOREIGN KEY (job_seeker_id) REFERENCES job_seeker (id)
+  
+) engine=InnoDB auto_increment=1 default charset=latin1;
+select * from education;
+
+
+CREATE TABLE `employment_history` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `job_title` varchar(255) NOT NULL,
+  `company` varchar(255) NOT NULL,
+  `start_date` varchar(255) NOT NULL,
+  `end_date` varchar(255) NOT NULL,
+  `job_description` varchar(255) NOT NULL,
+  `job_seeker_id` int NOT NULL,
+  
+  PRIMARY KEY (`id`),
+  
+  FOREIGN KEY (job_seeker_id) REFERENCES job_seeker (id)
+
+  
+) engine=InnoDB auto_increment=1 default charset=latin1;
+select * from employment_history;
+
+
+
+/*Employer foriegn key*/
+CREATE TABLE `job_post` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `job_title` varchar(50) NOT NULL,
+  `description` varchar(255) NOT NULL,  
+  `salary` varchar(255) NOT NULL,
+  `listing_status` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) engine=InnoDB auto_increment=1 default charset=latin1;
