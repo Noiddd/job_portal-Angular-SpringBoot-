@@ -9,6 +9,7 @@
   <body>
     <div class="modal-conatiner">
       <h2>JobSeeker Register</h2>
+      <h2 *ngIf="uniqueEmailText">Email taken... Please try again</h2>
 
       <form
         name="registrationForm"

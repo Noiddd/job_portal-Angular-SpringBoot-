@@ -22,7 +22,8 @@ export class JobseekerRegisterComponent {
       this.validateLastName() &&
       this.validateEmail() &&
       this.validatePhone() &&
-      this.validatePassword()
+      this.validatePassword() &&
+      this.uniqueEmail()
     ) {
       this.jobSeekerService.registerJobSeeker(registerForm.value).subscribe(
         (response: JobSeeker) => {
@@ -34,6 +35,26 @@ export class JobseekerRegisterComponent {
         }
       );
     }
+  }
+
+  public uniqueEmail(): boolean {
+    this.jobSeekerService.checkUniqueEmail(this.email).subscribe(
+      (response: JobSeeker[]) => {
+        if (response.length == 0) {
+          this.uniqueEmailText = true;
+          return false;
+        } else {
+          this.uniqueEmailText = false;
+          return true;
+        }
+      },
+      (error: HttpErrorResponse) => {
+        this.uniqueEmailText = false;
+        return false;
+        alert(error.message);
+      }
+    );
+    return false;
   }
 
   //validation
@@ -53,6 +74,8 @@ export class JobseekerRegisterComponent {
   public passwordError: boolean = false;
 
   public formValid: boolean = false;
+
+  public uniqueEmailText: boolean = false;
 
   validateFirstName(): boolean {
     if (/\d/.test(this.firstName)) {
