@@ -14,7 +14,15 @@
         </div>
 
         <ul>
-          <li routerLink="/jobseeker/register"><a>Register</a></li>
+          <li *ngIf="!jobSeekerData.loggedIn" routerLink="/jobseeker/register">
+            <a>Register</a>
+          </li>
+          <li *ngIf="!jobSeekerData.loggedIn" routerLink="/jobseeker/login">
+            <a>Login</a>
+          </li>
+          <li *ngIf="jobSeekerData.loggedIn" routerLink="/jobseeker/profile">
+            <a>Profile</a>
+          </li>
         </ul>
       </nav>
     </header>

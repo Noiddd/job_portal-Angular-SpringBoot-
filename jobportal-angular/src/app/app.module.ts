@@ -12,13 +12,14 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { JobseekerRegisterSuccessComponent } from './jobseeker-register/jobseeker-register-success/jobseeker-register-success.component';
 import { JobseekerLoginComponent } from './jobseeker-login/jobseeker-login.component';
 import { JobseekerHomeComponent } from './jobseeker-home/jobseeker-home.component';
+import { JobseekerProfileComponent } from './jobseeker-profile/jobseeker-profile.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'jobseeker/register', component: JobseekerRegisterComponent },
   { path: 'jobseeker/login', component: JobseekerLoginComponent },
   { path: 'jobseeker/home', component: JobseekerHomeComponent },
-
+  { path: 'jobseeker/profile', component: JobseekerProfileComponent },
   {
     path: 'jobseeker/register/success',
     component: JobseekerRegisterSuccessComponent,
@@ -33,6 +34,7 @@ const appRoutes: Routes = [
     JobseekerRegisterSuccessComponent,
     JobseekerLoginComponent,
     JobseekerHomeComponent,
+    JobseekerProfileComponent,
   ],
   imports: [
     BrowserModule,

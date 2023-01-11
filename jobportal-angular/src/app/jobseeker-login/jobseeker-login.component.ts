@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { JobSeeker } from '../jobSeeker';
+import { JobSeekerDataService } from '../service/jobseeker-data.service';
 import { JobseekerService } from '../service/jobseeker.service';
 
 @Component({
@@ -13,7 +14,8 @@ import { JobseekerService } from '../service/jobseeker.service';
 export class JobseekerLoginComponent {
   constructor(
     private jobSeekerService: JobseekerService,
-    private router: Router
+    private router: Router,
+    public jobSeekerData: JobSeekerDataService
   ) {}
 
   public onLoginJobSeeker(loginForm: NgForm): void {
@@ -26,6 +28,9 @@ export class JobseekerLoginComponent {
               // if response is empty, incorrect email or password
               this.incorrectInputs = true;
             } else {
+              console.log(response[0]);
+              this.jobSeekerData.currentJobSeeker = response[0];
+              this.jobSeekerData.loggedIn = true;
               this.router.navigate(['jobseeker/home']);
             }
           },
