@@ -49,8 +49,17 @@ public class JobSeekerController {
 
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/login/{email}/{password}")
-    public ResponseEntity<?> loginJobSeeker(@PathVariable("email") String email, @PathVariable("password") String password){
+    public ResponseEntity<List<JobSeeker>> loginJobSeeker(@PathVariable("email") String email, @PathVariable("password") String password){
         List<JobSeeker> jobSeekers = jobSeekerService.loginJobSeeker(email, password);
         return new ResponseEntity<>(jobSeekers, HttpStatus.OK);
     }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @GetMapping("/uniqueemail/{email}")
+    public ResponseEntity<List<JobSeeker>> checkUniqueEmail(@PathVariable("email") String email){
+        List<JobSeeker> jobSeekers = jobSeekerService.checkUniqueEmail(email);
+        return new ResponseEntity<>(jobSeekers, HttpStatus.OK);
+    }
+
+
 }

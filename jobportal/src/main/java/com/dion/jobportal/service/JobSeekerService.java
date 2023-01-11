@@ -76,4 +76,9 @@ public class JobSeekerService  {
         return query.getResultList();
     }
 
+    public List<JobSeeker> checkUniqueEmail(String email){
+        TypedQuery<JobSeeker> query = em.createQuery("select js from JobSeeker js where js.email like ?1", JobSeeker.class).setParameter(1, email);
+        return query.getResultList();
+    }
+
 }
