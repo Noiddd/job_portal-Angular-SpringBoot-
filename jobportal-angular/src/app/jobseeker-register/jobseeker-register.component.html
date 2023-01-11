@@ -1,1 +1,154 @@
-<p>jobseeker-register works!</p>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Job Seeker Register</title>
+  </head>
+  <body>
+    <div class="modal-conatiner">
+      <h2>JobSeeker Register</h2>
+
+      <form
+        name="registrationForm"
+        id="form"
+        #registerForm="ngForm"
+        (ngSubmit)="onRegisterJobSeeker(registerForm)"
+      >
+        <div class="input-control">
+          <div
+            id="firstName-error"
+            class="error"
+            *ngIf="fname.touched && firstNameError"
+          >
+            <small>Please enter a valid first name</small>
+          </div>
+          <div class="user-box">
+            <input
+              type="text"
+              ngModel
+              #fname="ngModel"
+              name="firstName"
+              required
+              class="inputField firstNameField"
+              id="firstNameId"
+              [(ngModel)]="firstName"
+              (keyup)="validateFirstName()"
+            />
+            <label class="label firstNameLabel">First Name</label>
+          </div>
+        </div>
+
+        <div class="input-control">
+          <div
+            id="lastName-error"
+            class="error"
+            *ngIf="lname.touched && lastNameError"
+          >
+            <small>Please enter a valid last name</small>
+          </div>
+          <div id="lastName-error"></div>
+          <div class="user-box">
+            <input
+              ngModel
+              type="text"
+              name="lastName"
+              required
+              class="inputField lastNameField"
+              id="lastNameId"
+              #lname="ngModel"
+              [(ngModel)]="lastName"
+              (keyup)="validateLastName()"
+            />
+            <label class="label lastNameLabel">Last Name</label>
+          </div>
+        </div>
+
+        <div class="input-control">
+          <div
+            id="email-error"
+            class="error"
+            *ngIf="emailInput.touched && emailError"
+          >
+            <small>Please enter a valid email</small>
+          </div>
+          <div id="email-error"></div>
+          <div class="user-box">
+            <input
+              ngModel
+              type="text"
+              name="email"
+              required
+              class="inputField emailField"
+              id="emailId"
+              #emailInput="ngModel"
+              [(ngModel)]="email"
+              (keyup)="validateEmail()"
+            />
+            <label class="label emailLabel">Email</label>
+          </div>
+        </div>
+
+        <div class="input-control">
+          <div
+            id="phone-error"
+            class="error"
+            *ngIf="phoneInput.touched && phoneError"
+          >
+            <small>Please enter a valid phone number</small>
+          </div>
+          <div id="phone-error"></div>
+          <div class="user-box">
+            <input
+              ngModel
+              type="text"
+              name="phone"
+              required
+              class="inputField phoneField"
+              id="phoneId"
+              #phoneInput="ngModel"
+              [(ngModel)]="phone"
+              (keyup)="validatePhone()"
+            />
+            <label class="label phoneLabel">Phone Number</label>
+          </div>
+        </div>
+
+        <div class="input-control">
+          <div
+            id="password-error"
+            class="error"
+            *ngIf="passwordInput.touched && passwordError"
+          >
+            <small>Please enter a password</small>
+          </div>
+          <div id="password-error"></div>
+          <div class="user-box">
+            <input
+              ngModel
+              type="text"
+              name="password"
+              required
+              class="inputField passwordField"
+              id="passwordId"
+              #passwordInput="ngModel"
+              [(ngModel)]="password"
+              (keyup)="validatePassword()"
+            />
+            <label class="label passwordLabel">Password</label>
+          </div>
+        </div>
+
+        <button
+          class="submit-btn"
+          role="button"
+          type="submit"
+          [disabled]="registerForm.invalid"
+        >
+          Register
+        </button>
+      </form>
+    </div>
+  </body>
+</html>
