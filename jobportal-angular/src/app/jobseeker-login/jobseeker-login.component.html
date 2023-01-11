@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JobSeeker Login</title>
+  </head>
+  <body>
+    <div class="modal-conatiner">
+      <h2>Job-Seeker Login</h2>
+      <h2 *ngIf="incorrectInputs">
+        Email/password is incorrect... Please try again
+      </h2>
+
+      <form
+        name="registrationForm"
+        id="form"
+        #loginForm="ngForm"
+        (ngSubmit)="onLoginJobSeeker(loginForm)"
+        class="formLogin"
+      >
+        <div class="input-control">
+          <div
+            id="email-error"
+            class="error"
+            *ngIf="emailInput.touched && emailError"
+          >
+            <small>Please enter a valid email</small>
+          </div>
+          <div id="email-error"></div>
+          <div class="user-box">
+            <input
+              ngModel
+              type="text"
+              name="email"
+              required
+              class="inputField emailField"
+              id="emailId"
+              #emailInput="ngModel"
+              [(ngModel)]="email"
+              (keyup)="validateEmail()"
+            />
+            <label class="label emailLabel">Email</label>
+          </div>
+        </div>
+
+        <div class="input-control">
+          <div
+            id="password-error"
+            class="error"
+            *ngIf="passwordInput.touched && passwordError"
+          >
+            <small>Please enter a password</small>
+          </div>
+          <div id="password-error"></div>
+          <div class="user-box">
+            <input
+              ngModel
+              type="text"
+              name="password"
+              required
+              class="inputField passwordField"
+              id="passwordId"
+              #passwordInput="ngModel"
+              [(ngModel)]="password"
+              (keyup)="validatePassword()"
+            />
+            <label class="label passwordLabel">Password</label>
+          </div>
+        </div>
+
+        <button
+          class="submit-btn"
+          role="button"
+          type="submit"
+          [disabled]="loginForm.invalid"
+        >
+          Login
+        </button>
+      </form>
+    </div>
+  </body>
+</html>

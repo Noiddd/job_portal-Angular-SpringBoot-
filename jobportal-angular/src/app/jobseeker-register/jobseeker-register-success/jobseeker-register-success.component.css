@@ -23,38 +23,6 @@
   position: relative;
 }
 
-.inputField {
-  width: 100%;
-  padding: 10px 0;
-  font-size: 16px;
-  color: black;
-  margin-bottom: 30px;
-  border: none;
-  border-bottom: 1px solid black;
-  outline: none;
-  background: transparent;
-}
-
-.label {
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding: 10px 0;
-  font-size: 16px;
-  color: black;
-  pointer-events: none;
-  transition: 0.5s;
-  font-size: 18px;
-}
-
-.inputField:focus ~ label,
-.inputField:valid ~ label {
-  top: -20px;
-  left: 0;
-  color: black;
-  font-size: 12px;
-}
-
 .submit-btn {
   align-items: center;
   background-color: #fff;
@@ -103,17 +71,4 @@
   .submit-btn {
     min-width: 170px;
   }
-}
-
-.input.ng-invalid {
-  border: white 1px solid;
-}
-
-.error {
-  margin-bottom: 15px;
-  font-size: 15px;
-}
-
-.formRegister {
-  text-align: center;
 }

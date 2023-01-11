@@ -6,6 +6,7 @@ import com.dion.jobportal.entity.JobSeeker;
 import com.dion.jobportal.exception.UserNotFoundException;
 import com.dion.jobportal.repository.JobSeekerRepository;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -27,7 +28,6 @@ public class JobSeekerService  {
     public JobSeeker addJobSeeker(JobSeeker jobSeeker){
         return jobSeekerRepository.save(jobSeeker);
     }
-
 
     public JobSeeker editJobSeeker(JobSeeker jobSeeker){
         em.merge(jobSeeker);
@@ -56,6 +56,7 @@ public class JobSeekerService  {
         }
     }
 
+    @Transactional
     public void addEmploymentHistory(int jobSeekerId, List<EmploymentHistory> employmentHistories){
         // get the job seeker
         JobSeeker jobSeeker = findById(jobSeekerId);
@@ -68,6 +69,11 @@ public class JobSeekerService  {
             // save into database
             em.persist(employmentHistory);
         }
+    }
+
+    public List<JobSeeker> loginJobSeeker(String email, String password){
+       TypedQuery<JobSeeker> query =  em.createQuery("select js from JobSeeker js where js.email like ?1 and js.password like ?2", JobSeeker.class).setParameter(1, email).setParameter(2, password);
+        return query.getResultList();
     }
 
 }

@@ -11,5 +11,19 @@ export class JobseekerService {
 
   constructor(private http: HttpClient) {}
 
-  public registerJobSeeker(jobSeeker: JobSeeker): Observable<JobSeeker> {}
+  public registerJobSeeker(jobSeeker: JobSeeker): Observable<JobSeeker> {
+    return this.http.post<JobSeeker>(
+      `${this.apiServerUrl}/jobseeker/add`,
+      jobSeeker
+    );
+  }
+
+  public loginJobSeeker(
+    email: string,
+    password: string
+  ): Observable<JobSeeker[]> {
+    return this.http.get<JobSeeker[]>(
+      `${this.apiServerUrl}/jobseeker/login/${email}/${password}`
+    );
+  }
 }

@@ -1,5 +1,9 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { JobSeeker } from '../jobSeeker';
+import { JobseekerService } from '../service/jobseeker.service';
 
 @Component({
   selector: 'app-jobseeker-register',
@@ -7,7 +11,12 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./jobseeker-register.component.css'],
 })
 export class JobseekerRegisterComponent {
-  public onRegisterJobSeeker(addForm: NgForm): void {
+  constructor(
+    public jobSeekerService: JobseekerService,
+    private router: Router
+  ) {}
+
+  public onRegisterJobSeeker(registerForm: NgForm): void {
     if (
       this.validateFirstName() &&
       this.validateLastName() &&
@@ -15,6 +24,15 @@ export class JobseekerRegisterComponent {
       this.validatePhone() &&
       this.validatePassword()
     ) {
+      this.jobSeekerService.registerJobSeeker(registerForm.value).subscribe(
+        (response: JobSeeker) => {
+          console.log(response);
+          this.router.navigate(['jobseeker/register/success']);
+        },
+        (error: HttpErrorResponse) => {
+          alert(error.message);
+        }
+      );
     }
   }
 
