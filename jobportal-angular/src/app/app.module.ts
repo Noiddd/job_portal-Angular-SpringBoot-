@@ -17,6 +17,7 @@ import { JobseekerProfileSuccessComponent } from './jobseeker-profile/jobseeker-
 import { JobseekerEducationComponent } from './jobseeker-resume/jobseeker-education/jobseeker-education.component';
 import { JobseekerResumeComponent } from './jobseeker-resume/jobseeker-resume.component';
 import { JobseekerEmploymenthistoryComponent } from './jobseeker-resume/jobseeker-employmenthistory/jobseeker-employmenthistory.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -55,6 +56,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     FormsModule,
     HttpClientModule,
+    FontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
