@@ -20,6 +20,9 @@
           <li *ngIf="!jobSeekerData.loggedIn" routerLink="/jobseeker/login">
             <a>Login</a>
           </li>
+          <li *ngIf="jobSeekerData.loggedIn" routerLink="/jobseeker/resume">
+            <a>Resume</a>
+          </li>
           <li *ngIf="jobSeekerData.loggedIn" routerLink="/jobseeker/profile">
             <a>Profile</a>
           </li>

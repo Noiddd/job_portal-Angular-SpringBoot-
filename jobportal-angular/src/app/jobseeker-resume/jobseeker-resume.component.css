@@ -1,0 +1,36 @@
+.container {
+  position: fixed;
+  top: 18%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  max-height: 800px;
+}
+
+.title {
+  position: relative;
+  left: 45%;
+  align-items: center;
+}
+
+.employment-container {
+  margin-top: 40px;
+  position: relative;
+  left: 6%;
+  display: flex;
+  flex-direction: column;
+}
+
+.education-container {
+  margin-top: 40px;
+  position: relative;
+  left: 6%;
+}
+
+.employmentHistory-list {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}

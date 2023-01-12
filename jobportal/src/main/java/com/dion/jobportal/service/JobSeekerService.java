@@ -29,9 +29,9 @@ public class JobSeekerService  {
         return jobSeekerRepository.save(jobSeeker);
     }
 
+    @Transactional
     public JobSeeker editJobSeeker(JobSeeker jobSeeker){
-        em.merge(jobSeeker);
-        return jobSeeker;
+        return jobSeekerRepository.save(jobSeeker);
     }
 
     public List<JobSeeker> findAll(){

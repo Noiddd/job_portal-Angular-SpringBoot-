@@ -61,5 +61,12 @@ public class JobSeekerController {
         return new ResponseEntity<>(jobSeekers, HttpStatus.OK);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PutMapping("/edit")
+    public ResponseEntity<JobSeeker> editJobSeeker(@RequestBody JobSeeker jobSeeker){
+        JobSeeker editJobSeeker = jobSeekerService.editJobSeeker(jobSeeker);
+        return new ResponseEntity<>(editJobSeeker, HttpStatus.OK);
+    }
+
 
 }

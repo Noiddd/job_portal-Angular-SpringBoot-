@@ -8,6 +8,6 @@ export interface JobSeeker {
   email: string;
   phone: string;
   password: string;
-  employmentHistory: EmploymentHistory[];
-  education: Education[];
+  employmentHistoryList: EmploymentHistory[];
+  educationList: Education[];
 }

@@ -30,6 +30,7 @@ export class JobseekerLoginComponent {
             } else {
               console.log(response[0]);
               this.jobSeekerData.currentJobSeeker = response[0];
+              console.log(this.jobSeekerData.currentJobSeeker.);
               this.jobSeekerData.loggedIn = true;
               this.router.navigate(['jobseeker/home']);
             }

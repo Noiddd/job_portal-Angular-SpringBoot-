@@ -1,0 +1,16 @@
+.education-card {
+  margin-top: 10px;
+  width: 1700px;
+  padding: 40px;
+  background: #fda16e;
+  box-sizing: border-box;
+  border-radius: 10px;
+  z-index: 999999999;
+  display: flex;
+  justify-content: space-between;
+}
+
+.education-card-right {
+  display: flex;
+  gap: 15px;
+}

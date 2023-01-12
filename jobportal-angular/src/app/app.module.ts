@@ -13,6 +13,10 @@ import { JobseekerRegisterSuccessComponent } from './jobseeker-register/jobseeke
 import { JobseekerLoginComponent } from './jobseeker-login/jobseeker-login.component';
 import { JobseekerHomeComponent } from './jobseeker-home/jobseeker-home.component';
 import { JobseekerProfileComponent } from './jobseeker-profile/jobseeker-profile.component';
+import { JobseekerProfileSuccessComponent } from './jobseeker-profile/jobseeker-profile-success/jobseeker-profile-success.component';
+import { JobseekerEducationComponent } from './jobseeker-resume/jobseeker-education/jobseeker-education.component';
+import { JobseekerResumeComponent } from './jobseeker-resume/jobseeker-resume.component';
+import { JobseekerEmploymenthistoryComponent } from './jobseeker-resume/jobseeker-employmenthistory/jobseeker-employmenthistory.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -20,9 +24,14 @@ const appRoutes: Routes = [
   { path: 'jobseeker/login', component: JobseekerLoginComponent },
   { path: 'jobseeker/home', component: JobseekerHomeComponent },
   { path: 'jobseeker/profile', component: JobseekerProfileComponent },
+  { path: 'jobseeker/resume', component: JobseekerResumeComponent },
   {
     path: 'jobseeker/register/success',
     component: JobseekerRegisterSuccessComponent,
+  },
+  {
+    path: 'jobseeker/profile/success',
+    component: JobseekerProfileSuccessComponent,
   },
 ];
 
@@ -35,6 +44,10 @@ const appRoutes: Routes = [
     JobseekerLoginComponent,
     JobseekerHomeComponent,
     JobseekerProfileComponent,
+    JobseekerProfileSuccessComponent,
+    JobseekerEducationComponent,
+    JobseekerResumeComponent,
+    JobseekerEmploymenthistoryComponent,
   ],
   imports: [
     BrowserModule,

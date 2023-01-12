@@ -41,11 +41,11 @@ export class JobseekerRegisterComponent {
     this.jobSeekerService.checkUniqueEmail(this.email).subscribe(
       (response: JobSeeker[]) => {
         if (response.length == 0) {
-          this.uniqueEmailText = true;
-          return false;
-        } else {
           this.uniqueEmailText = false;
           return true;
+        } else {
+          this.uniqueEmailText = true;
+          return false;
         }
       },
       (error: HttpErrorResponse) => {

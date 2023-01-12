@@ -33,4 +33,12 @@ export class JobseekerService {
     >(`${this.apiServerUrl}/jobseeker/uniqueemail/${email}
     `);
   }
+
+  public editJobSeeker(jobSeeker: JobSeeker): Observable<JobSeeker> {
+    console.log('in service edit job seeker');
+    return this.http.put<JobSeeker>(
+      `${this.apiServerUrl}/jobseeker/edit`,
+      jobSeeker
+    );
+  }
 }
