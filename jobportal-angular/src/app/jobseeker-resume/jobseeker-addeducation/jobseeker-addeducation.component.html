@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JobSeeker Add Education</title>
+  </head>
+  <body>
+    <div
+      class="overlay"
+      (click)="jobSeekerResumeService.showJobSeekerAddEducation = false"
+    ></div>
+
+    <div class="modal-container">
+      <h2>Add Education</h2>
+
+      <div class="x-icon">
+        <fa-icon
+          id="xicon"
+          [icon]="faXmark"
+          style="font-size: 20px"
+          class="faxmark"
+          (click)="jobSeekerResumeService.showJobSeekerAddEducation = false"
+        ></fa-icon>
+      </div>
+
+      <form
+        name="addEducationForm"
+        id="form"
+        #addEducationForm="ngForm"
+        (ngSubmit)="onAddEducation(addEducationForm)"
+      >
+        <div class="input-control">
+          <div class="user-box">
+            <input
+              type="text"
+              ngModel
+              name="institute"
+              required
+              class="inputField instituteField"
+              id="instituteId"
+              [(ngModel)]="institute"
+            />
+            <label class="label instituteLabel">Institute</label>
+          </div>
+        </div>
+
+        <div class="input-control">
+          <div class="user-box">
+            <input
+              type="text"
+              ngModel
+              name="qualification"
+              required
+              class="inputField qualificationField"
+              id="qualificationId"
+              [(ngModel)]="qualification"
+            />
+            <label class="label qualificationLabel">Qualification</label>
+          </div>
+        </div>
+
+        <div class="input-control">
+          <div
+            id="startDate-error"
+            class="error"
+            *ngIf="startdate.touched && startDateError"
+          >
+            <small
+              >Please enter in a format Day/Month/Year e.g. 25/05/2022</small
+            >
+          </div>
+          <div class="user-box">
+            <input
+              type="text"
+              ngModel
+              #startdate="ngModel"
+              name="startDate"
+              required
+              class="inputField startDateField"
+              id="startDateId"
+              [(ngModel)]="startDate"
+              (keyup)="validateStartDate()"
+            />
+            <label class="label startDateLabel">Start Date</label>
+          </div>
+        </div>
+
+        <div class="input-control">
+          <div
+            id="endDate-error"
+            class="error"
+            *ngIf="enddate.touched && endDateError"
+          >
+            <small
+              >Please enter in a format Day/Month/Year e.g. 25/05/2022</small
+            >
+          </div>
+          <div class="user-box">
+            <input
+              type="text"
+              ngModel
+              #enddate="ngModel"
+              name="endDate"
+              required
+              class="inputField endDateField"
+              id="endDateId"
+              [(ngModel)]="endDate"
+              (keyup)="validateEndDate()"
+            />
+            <label class="label endDateLabel">End Date</label>
+          </div>
+        </div>
+
+        <button
+          class="submit-btn"
+          role="button"
+          type="submit"
+          [disabled]="addEducationForm.invalid"
+        >
+          Add
+        </button>
+      </form>
+    </div>
+  </body>
+</html>

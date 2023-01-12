@@ -18,6 +18,10 @@ import { JobseekerEducationComponent } from './jobseeker-resume/jobseeker-educat
 import { JobseekerResumeComponent } from './jobseeker-resume/jobseeker-resume.component';
 import { JobseekerEmploymenthistoryComponent } from './jobseeker-resume/jobseeker-employmenthistory/jobseeker-employmenthistory.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { JobseekerAddemploymenthistoryComponent } from './jobseeker-resume/jobseeker-addemploymenthistory/jobseeker-addemploymenthistory.component';
+import { JobseekerAddeducationComponent } from './jobseeker-resume/jobseeker-addeducation/jobseeker-addeducation.component';
+import { JobseekerAddeducationSuccessComponent } from './jobseeker-resume/jobseeker-addeducation/jobseeker-addeducation-success/jobseeker-addeducation-success.component';
+import { JobseekerAddemploymenthistorySuccessComponent } from './jobseeker-resume/jobseeker-addemploymenthistory/jobseeker-addemploymenthistory-success/jobseeker-addemploymenthistory-success.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -49,6 +53,10 @@ const appRoutes: Routes = [
     JobseekerEducationComponent,
     JobseekerResumeComponent,
     JobseekerEmploymenthistoryComponent,
+    JobseekerAddemploymenthistoryComponent,
+    JobseekerAddeducationComponent,
+    JobseekerAddeducationSuccessComponent,
+    JobseekerAddemploymenthistorySuccessComponent,
   ],
   imports: [
     BrowserModule,

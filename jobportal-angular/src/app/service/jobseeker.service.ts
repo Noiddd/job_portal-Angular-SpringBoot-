@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { JobSeeker } from '../jobSeeker';
 import { Observable } from 'rxjs';
+import { Education } from '../education';
+import { EmploymentHistory } from '../employmentHistory';
 
 @Injectable({
   providedIn: 'root',
@@ -35,10 +37,29 @@ export class JobseekerService {
   }
 
   public editJobSeeker(jobSeeker: JobSeeker): Observable<JobSeeker> {
-    console.log('in service edit job seeker');
     return this.http.put<JobSeeker>(
       `${this.apiServerUrl}/jobseeker/edit`,
       jobSeeker
+    );
+  }
+
+  public addEducation(
+    education: Education,
+    jobSeekerId: number
+  ): Observable<Education> {
+    return this.http.put<Education>(
+      `${this.apiServerUrl}/jobseeker/addeducation/${jobSeekerId}`,
+      education
+    );
+  }
+
+  public addEmploymentHistory(
+    employmentHistory: EmploymentHistory,
+    jobSeekerId: number
+  ): Observable<EmploymentHistory> {
+    return this.http.put<EmploymentHistory>(
+      `${this.apiServerUrl}/jobseeker/addemploymenthistory/${jobSeekerId}`,
+      employmentHistory
     );
   }
 }

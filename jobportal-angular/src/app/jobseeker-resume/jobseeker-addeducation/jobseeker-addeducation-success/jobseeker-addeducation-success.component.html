@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JobSeeker Add Education Success</title>
+  </head>
+  <body>
+    <div
+      class="overlay"
+      (click)="
+        this.jobSeekerResumeService.showJobSeekerAddEducationSuccess = false
+      "
+    ></div>
+    <div class="modal-container">
+      <h2>Education Added Successfully</h2>
+      <div class="x-icon">
+        <fa-icon
+          id="xicon"
+          [icon]="faXmark"
+          style="font-size: 20px"
+          class="faxmark"
+          (click)="
+            this.jobSeekerResumeService.showJobSeekerAddEducationSuccess = false
+          "
+        ></fa-icon>
+      </div>
+      <button
+        class="submit-btn"
+        role="button"
+        type="submit"
+        (click)="onAnotherEducation()"
+      >
+        Add Another Education
+      </button>
+    </div>
+  </body>
+</html>

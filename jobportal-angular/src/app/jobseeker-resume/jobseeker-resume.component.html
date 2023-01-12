@@ -7,11 +7,33 @@
     <title>Job Seeker Resume</title>
   </head>
   <body>
+    <app-jobseeker-addeducation
+      *ngIf="jobSeekerResumeService.showJobSeekerAddEducation"
+    ></app-jobseeker-addeducation>
+    <app-jobseeker-addemploymenthistory
+      *ngIf="jobSeekerResumeService.showJobSeekerAddEmploymentHistory"
+    ></app-jobseeker-addemploymenthistory>
+    <app-jobseeker-addeducation-success
+      *ngIf="jobSeekerResumeService.showJobSeekerAddEducationSuccess"
+    ></app-jobseeker-addeducation-success>
+    <app-jobseeker-addemploymenthistory-success
+      *ngIf="jobSeekerResumeService.showJobSeekerAddEmploymentHistorySuccess"
+    ></app-jobseeker-addemploymenthistory-success>
+
     <div class="container">
       <h1 class="title">JobSeeker Resume</h1>
 
       <div class="employment-container">
-        <h2>Employment History</h2>
+        <div class="employment-subTitle">
+          <h2>Employment History</h2>
+          <fa-icon
+            [icon]="faPlus"
+            style="font-size: 20px"
+            class="faPlus"
+            (click)="addEmploymentHistory()"
+          ></fa-icon>
+        </div>
+
         <div class="employmentHistory-list">
           <app-jobseeker-employmenthistory
             *ngFor="let employmentHistory of employmentHistoryList"
@@ -21,7 +43,16 @@
       </div>
 
       <div class="education-container">
-        <h2>Education</h2>
+        <div class="education-subTitle">
+          <h2>Education</h2>
+          <fa-icon
+            [icon]="faPlus"
+            style="font-size: 20px"
+            class="faPlus"
+            (click)="addEducation()"
+          ></fa-icon>
+        </div>
+
         <app-jobseeker-education
           *ngFor="let education of educationList"
           [education]="education"

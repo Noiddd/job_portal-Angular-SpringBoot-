@@ -22,10 +22,24 @@
   flex-direction: column;
 }
 
+.employment-subTitle {
+  display: flex;
+  gap: 1400px;
+}
+
+.faPlus {
+  cursor: pointer;
+}
+
 .education-container {
   margin-top: 40px;
   position: relative;
   left: 6%;
+}
+
+.education-subTitle {
+  display: flex;
+  gap: 1518px;
 }
 
 .employmentHistory-list {

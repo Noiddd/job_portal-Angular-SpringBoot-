@@ -42,33 +42,30 @@ public class JobSeekerService  {
     }
 
     @Transactional
-    public void addEducation(int jobSeekerId, List<Education> educations){
+    public void addEducation(int jobSeekerId, Education education){
         // get the job seeker
         JobSeeker jobSeeker = findById(jobSeekerId);
 
-        for(Education education: educations){
-            // setting relationship
-            education.setJobSeeker(jobSeeker);
-            jobSeeker.addEducation(education);
+        education.setJobSeeker(jobSeeker);
+        jobSeeker.addEducation(education);
 
-            // save into database
-            em.persist(education);
-        }
+        // save into database
+        em.persist(education);
+
     }
 
     @Transactional
-    public void addEmploymentHistory(int jobSeekerId, List<EmploymentHistory> employmentHistories){
+    public void addEmploymentHistory(int jobSeekerId, EmploymentHistory employmentHistory){
         // get the job seeker
         JobSeeker jobSeeker = findById(jobSeekerId);
 
-        for(EmploymentHistory employmentHistory: employmentHistories){
-            // setting relationship
-            employmentHistory.setJobSeeker(jobSeeker);
-            jobSeeker.addEmploymentHistory(employmentHistory);
+        // setting relationship
+        employmentHistory.setJobSeeker(jobSeeker);
+        jobSeeker.addEmploymentHistory(employmentHistory);
 
-            // save into database
-            em.persist(employmentHistory);
-        }
+        // save into database
+        em.persist(employmentHistory);
+
     }
 
     public List<JobSeeker> loginJobSeeker(String email, String password){

@@ -35,15 +35,15 @@ public class JobSeekerController {
 
     @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping("/addeducation/{id}")
-    public ResponseEntity<?> addEducationJobSeeker(@RequestBody List<Education> educationList, @PathVariable("id") int id){
-        jobSeekerService.addEducation(id,educationList);
+    public ResponseEntity<?> addEducationJobSeeker(@RequestBody Education education, @PathVariable("id") int id){
+        jobSeekerService.addEducation(id,education);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping("/addemploymenthistory/{id}")
-    public ResponseEntity<?> addEmploymentHistory(@RequestBody List<EmploymentHistory> employmentHistoryList, @PathVariable("id") int id){
-        jobSeekerService.addEmploymentHistory(id,employmentHistoryList);
+    public ResponseEntity<?> addEmploymentHistory(@RequestBody EmploymentHistory employmentHistory, @PathVariable("id") int id){
+        jobSeekerService.addEmploymentHistory(id,employmentHistory);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
