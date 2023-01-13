@@ -24,7 +24,8 @@ export class JobseekerProfileComponent {
       this.validateLastName(editForm.value.lastName) &&
       this.validateEmail(editForm.value.email) &&
       this.validatePhone(editForm.value.phone) &&
-      this.validatePassword(editForm.value.password)
+      this.validatePassword(editForm.value.password) &&
+      this.uniqueEmail(editForm.value)
     ) {
       this.jobSeekerData.currentJobSeeker = editForm.value;
 
@@ -39,7 +40,7 @@ export class JobseekerProfileComponent {
     }
   }
 
-  public uniqueEmail(jobSeekerInput: JobSeeker): boolean {
+  public uniqueEmail(jobSeekerInput: JobSeeker): any {
     this.jobSeekerService.checkUniqueEmail(jobSeekerInput.email).subscribe(
       (response: JobSeeker[]) => {
         if (response.length == 0) {
@@ -65,10 +66,11 @@ export class JobseekerProfileComponent {
         alert(error.message);
       }
     );
-    return false;
   }
 
   //validation
+  public uniqueEmailReturn?: JobSeeker[];
+
   public firstNameError: boolean = false;
 
   public lastNameError: boolean = false;

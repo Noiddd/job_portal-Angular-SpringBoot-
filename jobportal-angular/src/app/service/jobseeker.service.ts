@@ -29,11 +29,10 @@ export class JobseekerService {
     );
   }
 
-  public checkUniqueEmail(email: string): Observable<JobSeeker[]> {
-    return this.http.get<
-      JobSeeker[]
-    >(`${this.apiServerUrl}/jobseeker/uniqueemail/${email}
-    `);
+  public checkUniqueEmail(email: string) {
+    return this.http.get<JobSeeker[]>(
+      `${this.apiServerUrl}/jobseeker/uniqueemail/${email}`
+    );
   }
 
   public editJobSeeker(jobSeeker: JobSeeker): Observable<JobSeeker> {

@@ -14,9 +14,20 @@
         <h3>{{ employmentHistory.jobDescription }}</h3>
       </div>
       <div class="employment-card-right">
-        <h3>{{ employmentHistory.startDate }}</h3>
-        <h3>-</h3>
-        <h3>{{ employmentHistory.endDate }}</h3>
+        <div class="icon-pen">
+          <fa-icon
+            [icon]="faPen"
+            style="font-size: 20px"
+            class="faPen"
+            (click)="editEmploymentHistory()"
+          ></fa-icon>
+        </div>
+
+        <div class="date">
+          <h3>{{ employmentHistory.startDate }}</h3>
+          <h3>-</h3>
+          <h3>{{ employmentHistory.endDate }}</h3>
+        </div>
       </div>
     </div>
   </body>

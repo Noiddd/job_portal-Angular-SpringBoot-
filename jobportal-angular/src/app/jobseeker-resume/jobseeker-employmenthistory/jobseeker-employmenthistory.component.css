@@ -12,5 +12,18 @@
 
 .employment-card-right {
   display: flex;
+  flex-direction: column;
+}
+
+.date {
+  display: flex;
   gap: 15px;
+  margin-top: 15px;
+}
+
+.icon-pen {
+  position: absolute;
+  top: 15px;
+  right: 250px;
+  cursor: pointer;
 }

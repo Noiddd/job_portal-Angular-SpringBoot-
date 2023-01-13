@@ -13,9 +13,19 @@
         <h2>{{ education.qualification }}</h2>
       </div>
       <div class="education-card-right">
-        <h3>{{ education.startDate }}</h3>
-        <h3>-</h3>
-        <h3>{{ education.endDate }}</h3>
+        <div class="icon-pen">
+          <fa-icon
+            [icon]="faPen"
+            style="font-size: 20px"
+            class="faPen"
+            (click)="editEducation()"
+          ></fa-icon>
+        </div>
+        <div class="date">
+          <h3>{{ education.startDate }}</h3>
+          <h3>-</h3>
+          <h3>{{ education.endDate }}</h3>
+        </div>
       </div>
     </div>
   </body>

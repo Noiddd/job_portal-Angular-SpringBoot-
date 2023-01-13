@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { faPen } from '@fortawesome/free-solid-svg-icons';
 import { EmploymentHistory } from 'src/app/employmentHistory';
 
 @Component({
@@ -8,4 +9,8 @@ import { EmploymentHistory } from 'src/app/employmentHistory';
 })
 export class JobseekerEmploymenthistoryComponent {
   @Input() employmentHistory!: EmploymentHistory;
+
+  faPen = faPen;
+
+  public editEmploymentHistory() {}
 }

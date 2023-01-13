@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Education } from 'src/app/education';
+import { faPen } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-jobseeker-education',
@@ -8,4 +9,8 @@ import { Education } from 'src/app/education';
 })
 export class JobseekerEducationComponent {
   @Input() education!: Education;
+
+  faPen = faPen;
+
+  public editEducation() {}
 }
