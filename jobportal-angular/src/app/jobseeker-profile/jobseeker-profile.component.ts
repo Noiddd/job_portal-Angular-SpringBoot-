@@ -25,7 +25,7 @@ export class JobseekerProfileComponent {
       this.validateEmail(editForm.value.email) &&
       this.validatePhone(editForm.value.phone) &&
       this.validatePassword(editForm.value.password) &&
-      this.uniqueEmail(editForm.value)
+      this.uniqueEmailTest(editForm.value.email)
     ) {
       this.jobSeekerData.currentJobSeeker = editForm.value;
 
@@ -40,24 +40,10 @@ export class JobseekerProfileComponent {
     }
   }
 
-  public uniqueEmail(jobSeekerInput: JobSeeker): any {
-    this.jobSeekerService.checkUniqueEmail(jobSeekerInput.email).subscribe(
+  public uniqueEmail(emailInput: string): any {
+    this.jobSeekerService.checkUniqueEmail(emailInput).subscribe(
       (response: JobSeeker[]) => {
-        if (response.length == 0) {
-          console.log('uniqueEmail pass');
-          this.uniqueEmailText = false;
-          return true;
-        } else if (
-          response[0].id == jobSeekerInput.id &&
-          response[0].email == jobSeekerInput.email
-        ) {
-          this.uniqueEmailText = false;
-          return true;
-        } else {
-          console.log('uniqueEmail fail');
-          this.uniqueEmailText = true;
-          return false;
-        }
+        this.uniqueEmailReturn = response;
       },
       (error: HttpErrorResponse) => {
         console.log('uniqueEmail error fail');
@@ -68,8 +54,27 @@ export class JobseekerProfileComponent {
     );
   }
 
+  public uniqueEmailTest(emailValue: string): boolean {
+    if (this.uniqueEmailReturn?.length == 0) {
+      console.log('uniqueEmail pass');
+      this.uniqueEmailText = false;
+      return true;
+    } else if (
+      this.uniqueEmailReturn![0].id ==
+        this.jobSeekerData.currentJobSeeker?.id &&
+      this.uniqueEmailReturn![0].email == emailValue
+    ) {
+      this.uniqueEmailText = false;
+      return true;
+    } else {
+      this.uniqueEmailText = true;
+      return false;
+    }
+  }
+
   //validation
   public uniqueEmailReturn?: JobSeeker[];
+  public jobSeekerInput?: JobSeeker;
 
   public firstNameError: boolean = false;
 
@@ -118,8 +123,7 @@ export class JobseekerProfileComponent {
       this.emailError = true;
       return false;
     } else {
-      console.log('email pass');
-
+      this.uniqueEmail(emailInput);
       this.emailError = false;
       return true;
     }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { JobseekerResumeService } from 'src/app/service/jobseeker-resume.service';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { NgForm } from '@angular/forms';
@@ -36,6 +36,11 @@ export class JobseekerAddeducationComponent {
           }
         );
     }
+  }
+
+  public test() {
+    this.jobSeekerResumeService.showJobSeekerAddEducation = false;
+    window.location.reload();
   }
 
   public jobSeekerId!: number;

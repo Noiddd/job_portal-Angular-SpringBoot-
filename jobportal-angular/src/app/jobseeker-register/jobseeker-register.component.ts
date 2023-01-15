@@ -2,7 +2,6 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { map } from 'rxjs/operators';
 import { JobSeeker } from '../jobSeeker';
 import { JobseekerService } from '../service/jobseeker.service';
 
@@ -24,7 +23,7 @@ export class JobseekerRegisterComponent {
       this.validateEmail() &&
       this.validatePhone() &&
       this.validatePassword() &&
-      this.test()
+      this.uniqueEmailTest()
     ) {
       console.log('in register');
       this.jobSeekerService.registerJobSeeker(registerForm.value).subscribe(
@@ -45,7 +44,6 @@ export class JobseekerRegisterComponent {
     this.jobSeekerService.checkUniqueEmail(this.email).subscribe(
       (response: JobSeeker[]) => {
         this.uniqueEmailReturn = response;
-        console.log(response);
       },
       (error: HttpErrorResponse) => {
         this.uniqueEmailText = false;
@@ -54,7 +52,7 @@ export class JobseekerRegisterComponent {
     );
   }
 
-  public test(): boolean {
+  public uniqueEmailTest(): boolean {
     if (this.uniqueEmailReturn?.length == 0) {
       this.uniqueEmailText = false;
       return true;
