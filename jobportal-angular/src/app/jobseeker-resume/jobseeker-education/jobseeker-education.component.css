@@ -23,6 +23,13 @@
 
 .icon-pen {
   position: absolute;
+  top: 18px;
+  right: 280px;
+  cursor: pointer;
+}
+
+.icon-x {
+  position: absolute;
   top: 15px;
   right: 250px;
   cursor: pointer;

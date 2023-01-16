@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JobSeeker Edit Education</title>
+  </head>
+  <body>
+    <div
+      class="overlay"
+      (click)="jobSeekerResumeService.showJobSeekerEditEducation = false"
+    ></div>
+
+    <div class="modal-container">
+      <h2>Edit Education</h2>
+
+      <div class="x-icon">
+        <fa-icon
+          id="xicon"
+          [icon]="faXmark"
+          style="font-size: 20px"
+          class="faxmark"
+          (click)="test()"
+        ></fa-icon>
+      </div>
+
+      <form
+        name="editEducationForm"
+        id="form"
+        #editEducationForm="ngForm"
+        (ngSubmit)="onEditEducation(editEducationForm)"
+      >
+        <input
+          type="hidden"
+          ngModel="{{ jobSeekerResumeService.editEducation?.id }}"
+          name="id"
+        />
+
+        <div class="input-control">
+          <div class="user-box">
+            <input
+              type="text"
+              ngModel="{{ jobSeekerResumeService.editEducation?.institute }}"
+              name="institute"
+              required
+              class="inputField instituteField"
+              id="instituteId"
+            />
+            <label class="label instituteLabel">Institute</label>
+          </div>
+        </div>
+
+        <div class="input-control">
+          <div class="user-box">
+            <input
+              type="text"
+              ngModel="{{
+                jobSeekerResumeService.editEducation?.qualification
+              }}"
+              name="qualification"
+              required
+              class="inputField qualificationField"
+              id="qualificationId"
+            />
+            <label class="label qualificationLabel">Qualification</label>
+          </div>
+        </div>
+
+        <div class="input-control">
+          <div
+            id="startDate-error"
+            class="error"
+            *ngIf="startdate.touched && startDateError"
+          >
+            <small
+              >Please enter in a format Day/Month/Year e.g. 25/05/2022</small
+            >
+          </div>
+          <div class="user-box">
+            <input
+              type="text"
+              ngModel="{{ jobSeekerResumeService.editEducation?.startDate }}"
+              #startdate="ngModel"
+              name="startDate"
+              required
+              class="inputField startDateField"
+              id="startDateId"
+              (keyup)="validateStartDate()"
+            />
+            <label class="label startDateLabel">Start Date</label>
+          </div>
+        </div>
+
+        <div class="input-control">
+          <div
+            id="endDate-error"
+            class="error"
+            *ngIf="enddate.touched && endDateError"
+          >
+            <small
+              >Please enter in a format Day/Month/Year e.g. 25/05/2022</small
+            >
+          </div>
+          <div class="user-box">
+            <input
+              type="text"
+              ngModel="{{ jobSeekerResumeService.editEducation?.endDate }}"
+              #enddate="ngModel"
+              name="endDate"
+              required
+              class="inputField endDateField"
+              id="endDateId"
+              (keyup)="validateEndDate()"
+            />
+            <label class="label endDateLabel">End Date</label>
+          </div>
+        </div>
+
+        <button
+          class="submit-btn"
+          role="button"
+          type="submit"
+          [disabled]="editEducationForm.invalid"
+        >
+          Update
+        </button>
+      </form>
+    </div>
+  </body>
+</html>

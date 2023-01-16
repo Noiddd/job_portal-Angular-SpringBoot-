@@ -61,4 +61,20 @@ export class JobseekerService {
       employmentHistory
     );
   }
+
+  public editEducation(education: Education): Observable<Education> {
+    return this.http.put<Education>(
+      `${this.apiServerUrl}/jobseeker/editeducation/${education.id}`,
+      education
+    );
+  }
+
+  public editEmploymentHistory(
+    employmentHistory: EmploymentHistory
+  ): Observable<EmploymentHistory> {
+    return this.http.put<EmploymentHistory>(
+      `${this.apiServerUrl}/jobseeker/editemploymenthistory/${employmentHistory.id}`,
+      employmentHistory
+    );
+  }
 }

@@ -40,7 +40,6 @@ export class JobseekerAddeducationComponent {
 
   public test() {
     this.jobSeekerResumeService.showJobSeekerAddEducation = false;
-    window.location.reload();
   }
 
   public jobSeekerId!: number;

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JobSeeker Add Education</title>
+  </head>
+  <body>
+    <div
+      class="overlay"
+      (click)="
+        jobSeekerResumeService.showJobSeekerEditEmploymentHistory = false
+      "
+    ></div>
+
+    <div class="modal-container">
+      <h2>Edit Employment History</h2>
+
+      <div class="x-icon">
+        <fa-icon
+          id="xicon"
+          [icon]="faXmark"
+          style="font-size: 20px"
+          class="faxmark"
+          (click)="
+            jobSeekerResumeService.showJobSeekerEditEmploymentHistory = false
+          "
+        ></fa-icon>
+      </div>
+
+      <form
+        name="editEmploymentHistoryForm"
+        id="form"
+        #editEmploymentHistoryForm="ngForm"
+        (ngSubmit)="onEditEmploymentHistoryForm(editEmploymentHistoryForm)"
+      >
+        <input
+          type="hidden"
+          ngModel="{{ jobSeekerResumeService.editEmploymentHistory?.id }}"
+          name="id"
+        />
+
+        <div class="input-control">
+          <div class="user-box">
+            <input
+              type="text"
+              ngModel="{{
+                jobSeekerResumeService.editEmploymentHistory?.jobTitle
+              }}"
+              name="jobTitle"
+              required
+              class="inputField jobTitleField"
+              id="jobTitleId"
+            />
+            <label class="label jobTitleLabel">Job Title</label>
+          </div>
+        </div>
+
+        <div class="input-control">
+          <div class="user-box">
+            <input
+              type="text"
+              ngModel="{{
+                jobSeekerResumeService.editEmploymentHistory?.company
+              }}"
+              name="company"
+              required
+              class="inputField companyField"
+              id="companyId"
+            />
+            <label class="label companyLabel">Company</label>
+          </div>
+        </div>
+
+        <div class="input-control">
+          <div class="user-box">
+            <input
+              type="text"
+              ngModel="{{
+                jobSeekerResumeService.editEmploymentHistory?.jobDescription
+              }}"
+              name="jobDescription"
+              required
+              class="inputField jobDescriptionField"
+              id="jobDescriptionId"
+            />
+            <label class="label jobDescriptionLabel">Job Description</label>
+          </div>
+        </div>
+
+        <div class="input-control">
+          <div
+            id="startDate-error"
+            class="error"
+            *ngIf="startdate.touched && startDateError"
+          >
+            <small
+              >Please enter in a format Day/Month/Year e.g. 25/05/2022</small
+            >
+          </div>
+          <div class="user-box">
+            <input
+              type="text"
+              ngModel="{{
+                jobSeekerResumeService.editEmploymentHistory?.startDate
+              }}"
+              #startdate="ngModel"
+              name="startDate"
+              required
+              class="inputField startDateField"
+              id="startDateId"
+              (keyup)="validateStartDate()"
+            />
+            <label class="label startDateLabel">Start Date</label>
+          </div>
+        </div>
+
+        <div class="input-control">
+          <div
+            id="endDate-error"
+            class="error"
+            *ngIf="enddate.touched && endDateError"
+          >
+            <small
+              >Please enter in a format Day/Month/Year e.g. 25/05/2022</small
+            >
+          </div>
+          <div class="user-box">
+            <input
+              type="text"
+              ngModel="{{
+                jobSeekerResumeService.editEmploymentHistory?.endDate
+              }}"
+              #enddate="ngModel"
+              name="endDate"
+              required
+              class="inputField endDateField"
+              id="endDateId"
+              (keyup)="validateEndDate()"
+            />
+            <label class="label endDateLabel">End Date</label>
+          </div>
+        </div>
+
+        <button
+          class="submit-btn"
+          role="button"
+          type="submit"
+          [disabled]="editEmploymentHistoryForm.invalid"
+        >
+          Update
+        </button>
+      </form>
+    </div>
+  </body>
+</html>

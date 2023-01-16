@@ -22,6 +22,12 @@ import { JobseekerAddemploymenthistoryComponent } from './jobseeker-resume/jobse
 import { JobseekerAddeducationComponent } from './jobseeker-resume/jobseeker-addeducation/jobseeker-addeducation.component';
 import { JobseekerAddeducationSuccessComponent } from './jobseeker-resume/jobseeker-addeducation/jobseeker-addeducation-success/jobseeker-addeducation-success.component';
 import { JobseekerAddemploymenthistorySuccessComponent } from './jobseeker-resume/jobseeker-addemploymenthistory/jobseeker-addemploymenthistory-success/jobseeker-addemploymenthistory-success.component';
+import { JobseekerEditeducationComponent } from './jobseeker-resume/jobseeker-editeducation/jobseeker-editeducation.component';
+import { JobseekerEditeducationSuccessComponent } from './jobseeker-resume/jobseeker-editeducation/jobseeker-editeducation-success/jobseeker-editeducation-success.component';
+import { JobseekerEditemploymenthistoryComponent } from './jobseeker-resume/jobseeker-editemploymenthistory/jobseeker-editemploymenthistory.component';
+import { JobseekerEditemploymenthistorySuccessComponent } from './jobseeker-resume/jobseeker-editemploymenthistory/jobseeker-editemploymenthistory-success/jobseeker-editemploymenthistory-success.component';
+import { JobseekerDeleteeducationComponent } from './jobseeker-resume/jobseeker-deleteeducation/jobseeker-deleteeducation.component';
+import { JobseekerDeleteeducationSuccessComponent } from './jobseeker-resume/jobseeker-deleteeducation/jobseeker-deleteeducation-success/jobseeker-deleteeducation-success.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -57,6 +63,12 @@ const appRoutes: Routes = [
     JobseekerAddeducationComponent,
     JobseekerAddeducationSuccessComponent,
     JobseekerAddemploymenthistorySuccessComponent,
+    JobseekerEditeducationComponent,
+    JobseekerEditeducationSuccessComponent,
+    JobseekerEditemploymenthistoryComponent,
+    JobseekerEditemploymenthistorySuccessComponent,
+    JobseekerDeleteeducationComponent,
+    JobseekerDeleteeducationSuccessComponent,
   ],
   imports: [
     BrowserModule,

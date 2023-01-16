@@ -3,6 +3,7 @@ package com.dion.jobportal.controller;
 import com.dion.jobportal.entity.Education;
 import com.dion.jobportal.entity.EmploymentHistory;
 import com.dion.jobportal.entity.JobSeeker;
+import com.dion.jobportal.repository.EducationRepository;
 import com.dion.jobportal.service.JobSeekerService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,9 +15,12 @@ import java.util.List;
 @RequestMapping("/jobseeker")
 public class JobSeekerController {
     private final JobSeekerService jobSeekerService;
+    private final EducationRepository educationRepository;
 
-    public JobSeekerController(JobSeekerService jobSeekerService) {
+    public JobSeekerController(JobSeekerService jobSeekerService,
+                               EducationRepository educationRepository) {
         this.jobSeekerService = jobSeekerService;
+        this.educationRepository = educationRepository;
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
@@ -66,6 +70,28 @@ public class JobSeekerController {
     public ResponseEntity<JobSeeker> editJobSeeker(@RequestBody JobSeeker jobSeeker){
         JobSeeker editJobSeeker = jobSeekerService.editJobSeeker(jobSeeker);
         return new ResponseEntity<>(editJobSeeker, HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PutMapping("/editeducation/{educationId}")
+    public ResponseEntity<JobSeeker> editEducation(@PathVariable("educationId") int educationId, @RequestBody Education education){
+        jobSeekerService.editEducation(education, educationId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PutMapping("/editemploymenthistory/{employmentHistoryId}")
+    public ResponseEntity<EmploymentHistory> editEmploymentHistory(@PathVariable("employmentHistoryId") int employmentHistoryId, @RequestBody EmploymentHistory employmentHistory){
+       jobSeekerService.editEmploymentHistory(employmentHistory, employmentHistoryId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @DeleteMapping("/deleteeducation/{educationId}")
+    public ResponseEntity<?> deleteEducation(@PathVariable("educationId") int educationId){
+        jobSeekerService.deleteEducation(educationId);
+        return new ResponseEntity<>(HttpStatus.OK);
+
     }
 
 
