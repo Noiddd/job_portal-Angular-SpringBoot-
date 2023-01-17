@@ -77,4 +77,18 @@ export class JobseekerService {
       employmentHistory
     );
   }
+
+  public deleteEducation(education: Education): Observable<Education> {
+    return this.http.delete<Education>(
+      `${this.apiServerUrl}/jobseeker/deleteeducation/${education.id}`
+    );
+  }
+
+  public deleteEmploymentHistory(
+    employmentHistory: EmploymentHistory
+  ): Observable<EmploymentHistory> {
+    return this.http.delete<EmploymentHistory>(
+      `${this.apiServerUrl}/jobseeker/deleteemploymenthistory/${employmentHistory.id}`
+    );
+  }
 }

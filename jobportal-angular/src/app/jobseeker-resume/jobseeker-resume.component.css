@@ -48,3 +48,14 @@
   flex-direction: column;
   flex-wrap: wrap;
 }
+
+.skills-container {
+  margin-top: 40px;
+  position: relative;
+  left: 6%;
+}
+
+.skills-subTitle {
+  display: flex;
+  gap: 1573px;
+}

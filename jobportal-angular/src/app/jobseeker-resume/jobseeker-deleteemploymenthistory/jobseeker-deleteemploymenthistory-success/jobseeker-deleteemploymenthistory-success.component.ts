@@ -3,11 +3,11 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { JobseekerResumeService } from 'src/app/service/jobseeker-resume.service';
 
 @Component({
-  selector: 'app-jobseeker-deleteeducation-success',
-  templateUrl: './jobseeker-deleteeducation-success.component.html',
-  styleUrls: ['./jobseeker-deleteeducation-success.component.css'],
+  selector: 'app-jobseeker-deleteemploymenthistory-success',
+  templateUrl: './jobseeker-deleteemploymenthistory-success.component.html',
+  styleUrls: ['./jobseeker-deleteemploymenthistory-success.component.css'],
 })
-export class JobseekerDeleteeducationSuccessComponent {
+export class JobseekerDeleteemploymenthistorySuccessComponent {
   constructor(public jobSeekerResumeService: JobseekerResumeService) {}
 
   faXmark = faXmark;

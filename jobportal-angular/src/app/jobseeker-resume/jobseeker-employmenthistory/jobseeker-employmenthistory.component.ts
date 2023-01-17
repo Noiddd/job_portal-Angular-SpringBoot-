@@ -20,5 +20,9 @@ export class JobseekerEmploymenthistoryComponent {
     this.jobSeekerResumeService.showJobSeekerEditEmploymentHistory = true;
     this.jobSeekerResumeService.editEmploymentHistory = this.employmentHistory;
   }
-  public deleteEmploymentHistory() {}
+  public deleteEmploymentHistory() {
+    this.jobSeekerResumeService.showJobSeekerDeleteEmploymentHistory = true;
+    this.jobSeekerResumeService.deleteEmploymentHistory =
+      this.employmentHistory;
+  }
 }

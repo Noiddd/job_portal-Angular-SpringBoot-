@@ -4,17 +4,17 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>JobSeeker Delete Education Successfully</title>
+    <title>JobSeeker Delete Employment History</title>
   </head>
   <body>
     <div
       class="overlay"
       (click)="
-        this.jobSeekerResumeService.showJobSeekerDeleteEducationSuccess = false
+        this.jobSeekerResumeService.showJobSeekerDeleteEmploymentHistory = false
       "
     ></div>
     <div class="modal-container">
-      <h2>Delete Education Successfully</h2>
+      <h2>Delete Employment History</h2>
       <div class="x-icon">
         <fa-icon
           id="xicon"
@@ -22,7 +22,7 @@
           style="font-size: 20px"
           class="faxmark"
           (click)="
-            this.jobSeekerResumeService.showJobSeekerDeleteEducationSuccess = false
+            this.jobSeekerResumeService.showJobSeekerDeleteEmploymentHistory = false
           "
         ></fa-icon>
       </div>
@@ -30,11 +30,9 @@
         class="submit-btn"
         role="button"
         type="submit"
-        (click)="
-          this.jobSeekerResumeService.showJobSeekerDeleteEducationSuccess = false
-        "
+        (click)="deleteEmploymentHistory()"
       >
-        Return Home
+        Confirm Delete
       </button>
     </div>
   </body>

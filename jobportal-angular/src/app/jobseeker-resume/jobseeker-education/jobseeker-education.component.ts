@@ -21,5 +21,8 @@ export class JobseekerEducationComponent {
     this.jobSeekerResumeService.editEducation = this.education;
   }
 
-  public deleteEducation() {}
+  public deleteEducation() {
+    this.jobSeekerResumeService.showJobSeekerDeleteEducation = true;
+    this.jobSeekerResumeService.deleteEducation = this.education;
+  }
 }

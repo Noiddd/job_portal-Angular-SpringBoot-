@@ -1,1 +1,37 @@
-<p>jobseeker-deleteeducation works!</p>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JobSeeker Delete Education</title>
+  </head>
+  <body>
+    <div
+      class="overlay"
+      (click)="this.jobSeekerResumeService.showJobSeekerDeleteEducation = false"
+    ></div>
+    <div class="modal-container">
+      <h2>Delete Education</h2>
+      <div class="x-icon">
+        <fa-icon
+          id="xicon"
+          [icon]="faXmark"
+          style="font-size: 20px"
+          class="faxmark"
+          (click)="
+            this.jobSeekerResumeService.showJobSeekerDeleteEducation = false
+          "
+        ></fa-icon>
+      </div>
+      <button
+        class="submit-btn"
+        role="button"
+        type="submit"
+        (click)="deleteEducation()"
+      >
+        Confirm Delete
+      </button>
+    </div>
+  </body>
+</html>

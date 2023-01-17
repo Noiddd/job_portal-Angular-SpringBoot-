@@ -33,4 +33,6 @@ export class JobseekerResumeComponent {
   public addEducation() {
     this.jobSeekerResumeService.showJobSeekerAddEducation = true;
   }
+
+  public addSkills() {}
 }

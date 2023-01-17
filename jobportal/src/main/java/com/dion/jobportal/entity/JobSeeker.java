@@ -30,6 +30,9 @@ public class JobSeeker implements Serializable {
     @OneToMany(mappedBy = "jobSeeker")
     private List<Education> educationList = new ArrayList<>();
 
+    @OneToMany(mappedBy = "jobSeeker")
+    private List<Skills> skillsList = new ArrayList<>();
+
 
     public JobSeeker(String firstName, String lastName, String phone, String email, String password) {
         this.firstName = firstName;
@@ -65,6 +68,17 @@ public class JobSeeker implements Serializable {
         educationList.remove(education);
     }
 
+    public void addSkills(Skills skill){
+        if(skillsList == null){
+            skillsList = new ArrayList<>();
+        }
+        skillsList.add(skill);
+    }
+
+    public void removeSkill(Skills skill){
+        skillsList.remove(skill);
+    }
+
     public List<Education> getEducationList() {
         return educationList;
     }
@@ -79,6 +93,14 @@ public class JobSeeker implements Serializable {
 
     public void setEmploymentHistoryList(List<EmploymentHistory> employmentHistoryList) {
         this.employmentHistoryList = employmentHistoryList;
+    }
+
+    public List<Skills> getSkillsList() {
+        return skillsList;
+    }
+
+    public void setSkillsList(List<Skills> skillsList) {
+        this.skillsList = skillsList;
     }
 
     public int getId() {

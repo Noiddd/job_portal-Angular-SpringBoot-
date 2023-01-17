@@ -3,6 +3,7 @@ package com.dion.jobportal.controller;
 import com.dion.jobportal.entity.Education;
 import com.dion.jobportal.entity.EmploymentHistory;
 import com.dion.jobportal.entity.JobSeeker;
+import com.dion.jobportal.entity.Skills;
 import com.dion.jobportal.repository.EducationRepository;
 import com.dion.jobportal.service.JobSeekerService;
 import org.springframework.http.HttpStatus;
@@ -91,8 +92,27 @@ public class JobSeekerController {
     public ResponseEntity<?> deleteEducation(@PathVariable("educationId") int educationId){
         jobSeekerService.deleteEducation(educationId);
         return new ResponseEntity<>(HttpStatus.OK);
-
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
+    @DeleteMapping("/deleteemploymenthistory/{employmentHistoryId}")
+    public ResponseEntity<?> deleteEmploymentHistory(@PathVariable("employmentHistoryId") int employmentHistoryId){
+        jobSeekerService.deleteEmploymentHistory(employmentHistoryId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PutMapping("/addskill/{id}")
+    public ResponseEntity<?> addskillJobSeeker(@RequestBody Skills skill, @PathVariable("id") int id){
+        jobSeekerService.addSkills(id,skill);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @DeleteMapping("/deleteskill/{skillId}")
+    public ResponseEntity<?> deleteSkill(@PathVariable("skillId") int skillId){
+        jobSeekerService.deleteSkills(skillId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 
 }
