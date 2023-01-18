@@ -17,4 +17,10 @@ export class JobseekerAddemploymenthistorySuccessComponent {
       false;
     this.jobSeekerResumeService.showJobSeekerAddEmploymentHistory = true;
   }
+
+  public test() {
+    this.jobSeekerResumeService.showJobSeekerAddEmploymentHistorySuccess =
+      false;
+    window.location.reload();
+  }
 }

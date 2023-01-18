@@ -4,6 +4,7 @@ import { EmploymentHistory } from '../employmentHistory';
 import { JobSeekerDataService } from '../service/jobseeker-data.service';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { JobseekerResumeService } from '../service/jobseeker-resume.service';
+import { Skills } from '../skills';
 
 @Component({
   selector: 'app-jobseeker-resume',
@@ -17,12 +18,13 @@ export class JobseekerResumeComponent {
   ) {
     this.employmentHistoryList =
       jobSeekerData.currentJobSeeker?.employmentHistoryList;
-
     this.educationList = jobSeekerData.currentJobSeeker?.educationList;
+    this.skillsList = jobSeekerData.currentJobSeeker?.skillsList;
   }
 
   public employmentHistoryList?: EmploymentHistory[] = [];
   public educationList?: Education[] = [];
+  public skillsList?: Skills[] = [];
 
   faPlus = faPlus;
 

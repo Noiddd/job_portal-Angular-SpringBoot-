@@ -95,7 +95,10 @@
           ></fa-icon>
         </div>
 
-        <app-jobseeker-skills></app-jobseeker-skills>
+        <app-jobseeker-skills
+          *ngFor="let skill of skillsList"
+          [skill]="skill"
+        ></app-jobseeker-skills>
       </div>
     </div>
   </body>

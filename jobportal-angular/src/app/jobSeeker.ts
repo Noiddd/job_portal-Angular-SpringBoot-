@@ -1,5 +1,6 @@
 import { Education } from './education';
 import { EmploymentHistory } from './employmentHistory';
+import { Skills } from './skills';
 
 export interface JobSeeker {
   id: number;
@@ -10,4 +11,5 @@ export interface JobSeeker {
   password: string;
   employmentHistoryList: EmploymentHistory[];
   educationList: Education[];
+  skillsList: Skills[];
 }
