@@ -1,4 +1,5 @@
-// mySQL
+create database jobportal_angular_springboot;
+use jobportal_angular_springboot;
 
 /*Entity*/
 CREATE TABLE `job_seeker` (
@@ -15,7 +16,10 @@ CREATE TABLE `job_seeker` (
 
 select * from job_seeker;
 
-CREATE TABLE IF NOT EXISTS `employer` (
+delete from job_seeker where id=15;
+
+
+CREATE TABLE `employer` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
@@ -43,6 +47,8 @@ CREATE TABLE `education` (
 ) engine=InnoDB auto_increment=1 default charset=latin1;
 select * from education;
 
+delete from education where id=9;
+
 
 CREATE TABLE `employment_history` (
   `id` int NOT NULL AUTO_INCREMENT,
@@ -61,6 +67,19 @@ CREATE TABLE `employment_history` (
 ) engine=InnoDB auto_increment=1 default charset=latin1;
 select * from employment_history;
 
+delete from employment_history where id=5;
+
+
+CREATE TABLE `skills` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `skill_name` varchar(255) NOT NULL,
+  `job_seeker_id` int NOT NULL,
+  
+  PRIMARY KEY (`id`),
+  
+  FOREIGN KEY (job_seeker_id) REFERENCES job_seeker (id)
+) engine=InnoDB auto_increment=1 default charset=latin1;
+select * from skills;
 
 
 /*Employer foriegn key*/
@@ -69,6 +88,8 @@ CREATE TABLE `job_post` (
   `job_title` varchar(50) NOT NULL,
   `description` varchar(255) NOT NULL,  
   `salary` varchar(255) NOT NULL,
+  `skills` varchar(255) NOT NULL,
   `listing_status` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
 ) engine=InnoDB auto_increment=1 default charset=latin1;
+
