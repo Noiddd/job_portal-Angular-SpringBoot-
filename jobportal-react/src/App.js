@@ -1,9 +1,12 @@
 import "./App.css";
+import { Route, Routes } from "react-router-dom";
 
 const App = () => {
-  const test = () => console.log("test");
-
-  return <button onClick={test}>Click me to log</button>;
+  return (
+    <Routes>
+      <Route path="/" element={<Home />}></Route>
+    </Routes>
+  );
 };
 
 export default App;
