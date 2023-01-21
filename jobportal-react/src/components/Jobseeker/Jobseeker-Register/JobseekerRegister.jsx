@@ -22,6 +22,7 @@ const JobseekerRegister = () => {
     } else if (e.target.name === "password") {
       validatePassword(e.target.value);
     }
+
     setFormData((prevFormData) => ({
       ...prevFormData,
       [e.target.name]: e.target.value,
