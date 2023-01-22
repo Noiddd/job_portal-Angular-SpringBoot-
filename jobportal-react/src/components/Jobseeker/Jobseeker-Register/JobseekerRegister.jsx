@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from "../../../styles/JobseekerRegister.module.css";
+import { registerJobSeekerAPI } from "../../../utils/fetchFromAPI";
 
 const JobseekerRegister = () => {
   const [formData, setFormData] = useState({});
@@ -38,7 +39,8 @@ const JobseekerRegister = () => {
       !passwordError
     ) {
       e.preventDefault();
-      console.log(formData);
+
+      registerJobSeekerAPI("add", formData);
     }
   };
 
