@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import styles from "../../../styles/JobseekerRegister.module.css";
-import { registerJobSeekerAPI } from "../../../utils/fetchFromAPI";
+import {
+  registerJobSeekerAPI,
+  checkUniqueEmailAPI,
+} from "../../../utils/fetchFromAPI";
+import { useNavigate } from "react-router-dom";
 
 const JobseekerRegister = () => {
   const [formData, setFormData] = useState({});
@@ -10,6 +14,10 @@ const JobseekerRegister = () => {
   let [emailError, setEmailError] = useState(false);
   let [phoneError, setPhoneError] = useState(false);
   let [passwordError, setPasswordError] = useState(false);
+  let [uniqueEmailReturn, setUniqueEmailReturn] = useState(false);
+  let [uniqueEmailError, setUniqueEmailError] = useState(false);
+
+  let navigate = useNavigate();
 
   const handleChange = (e) => {
     if (e.target.name === "firstName") {
@@ -36,11 +44,40 @@ const JobseekerRegister = () => {
       !lastNameError &&
       !emailError &&
       !phoneError &&
-      !passwordError
+      !passwordError &&
+      uniqueEmailTest()
     ) {
       e.preventDefault();
+      registerJobSeekerAPI(formData);
+      navigate("/jobseeker/registersuccess");
+    } else {
+      e.preventDefault();
+    }
+  };
 
-      console.log(registerJobSeekerAPI("add", formData));
+  const uniqueEmail = async (email) => {
+    try {
+      const response = await checkUniqueEmailAPI(email);
+
+      if (response.length == 0) {
+        setUniqueEmailReturn(true);
+        console.log("pass");
+      } else {
+        setUniqueEmailReturn(false);
+        console.log("fail");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const uniqueEmailTest = () => {
+    if (uniqueEmailReturn) {
+      setUniqueEmailError(false);
+      return true;
+    } else {
+      setUniqueEmailError(true);
+      return false;
     }
   };
 
@@ -61,7 +98,7 @@ const JobseekerRegister = () => {
   };
 
   const validateEmail = (email) => {
-    if (email == "") {
+    if (email === "") {
       setEmailError(false);
     } else if (
       !/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
@@ -71,20 +108,20 @@ const JobseekerRegister = () => {
       setEmailError(true);
     } else {
       setEmailError(false);
+      uniqueEmail(email);
     }
   };
 
   const validatePhone = (phone) => {
-    if (/^\d+$/.test(phone) || phone == "") {
+    if (/^\d+$/.test(phone) || phone === "") {
       setPhoneError(false);
     } else {
-      console.log(phone);
       setPhoneError(true);
     }
   };
 
   const validatePassword = (password) => {
-    if (password.length < 7 && password != "") {
+    if (password.length < 7 && password !== "") {
       setPasswordError(true);
     } else {
       setPasswordError(false);
@@ -94,6 +131,7 @@ const JobseekerRegister = () => {
   return (
     <div className={styles.modalContainer}>
       <h2>JobSeeker Register</h2>
+      {uniqueEmailError ? <h2>Email taken... Please try again</h2> : <div />}
 
       <form onSubmit={handleSubmit}>
         <div className="inputControl">

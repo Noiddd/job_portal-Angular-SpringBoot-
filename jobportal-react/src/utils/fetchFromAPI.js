@@ -6,8 +6,19 @@ const client = axios.create({
   url: baseURL,
 });
 
-export const registerJobSeekerAPI = async (route, jobSeeker) => {
-  const { data } = await axios.post(`${baseURL}/jobseeker/${route}`, jobSeeker);
+export const registerJobSeekerAPI = async (jobSeeker) => {
+  const { data } = await axios.post(`${baseURL}/jobseeker/add`, jobSeeker);
+  return data;
+};
 
+export const checkUniqueEmailAPI = async (email) => {
+  const { data } = await axios.get(`${baseURL}/jobseeker/uniqueemail/${email}`);
+  return data;
+};
+
+export const loginJobSeekerAPI = async (email, password) => {
+  const { data } = await axios.get(
+    `${baseURL}/jobseeker/login/${email}/${password}`
+  );
   return data;
 };

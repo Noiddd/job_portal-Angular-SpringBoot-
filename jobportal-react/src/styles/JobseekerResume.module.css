@@ -1,0 +1,61 @@
+.container {
+  position: fixed;
+  top: 18%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  max-height: 800px;
+}
+
+.title {
+  position: relative;
+  left: 45%;
+  align-items: center;
+}
+
+.employmentContainer {
+  margin-top: 40px;
+  position: relative;
+  left: 6%;
+  display: flex;
+  flex-direction: column;
+}
+
+.employmentSubTitle {
+  display: flex;
+  gap: 1400px;
+}
+
+.faPlus {
+  cursor: pointer;
+}
+
+.educationContainer {
+  margin-top: 40px;
+  position: relative;
+  left: 6%;
+}
+
+.educationSubTitle {
+  display: flex;
+  gap: 1518px;
+}
+
+.employmentHistoryList {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.skillsContainer {
+  margin-top: 40px;
+  position: relative;
+  left: 6%;
+}
+
+.skillsSubTitle {
+  display: flex;
+  gap: 1573px;
+}

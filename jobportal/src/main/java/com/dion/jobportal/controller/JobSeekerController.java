@@ -24,91 +24,91 @@ public class JobSeekerController {
         this.educationRepository = educationRepository;
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/all")
     public ResponseEntity<List<JobSeeker>> getAllJobSeeker(){
         List<JobSeeker> jobSeekers = jobSeekerService.findAll();
         return new ResponseEntity<>(jobSeekers, HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/add")
     public ResponseEntity<JobSeeker> addJobSeeker(@RequestBody JobSeeker jobSeeker){
         JobSeeker newJobSeeker = jobSeekerService.addJobSeeker(jobSeeker);
         return new ResponseEntity<>(newJobSeeker, HttpStatus.CREATED);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "http://localhost:3000")
     @PutMapping("/addeducation/{id}")
     public ResponseEntity<?> addEducationJobSeeker(@RequestBody Education education, @PathVariable("id") int id){
         jobSeekerService.addEducation(id,education);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "http://localhost:3000")
     @PutMapping("/addemploymenthistory/{id}")
     public ResponseEntity<?> addEmploymentHistory(@RequestBody EmploymentHistory employmentHistory, @PathVariable("id") int id){
         jobSeekerService.addEmploymentHistory(id,employmentHistory);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/login/{email}/{password}")
     public ResponseEntity<List<JobSeeker>> loginJobSeeker(@PathVariable("email") String email, @PathVariable("password") String password){
         List<JobSeeker> jobSeekers = jobSeekerService.loginJobSeeker(email, password);
         return new ResponseEntity<>(jobSeekers, HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/uniqueemail/{email}")
     public ResponseEntity<List<JobSeeker>> checkUniqueEmail(@PathVariable("email") String email){
         List<JobSeeker> jobSeekers = jobSeekerService.checkUniqueEmail(email);
         return new ResponseEntity<>(jobSeekers, HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "http://localhost:3000")
     @PutMapping("/edit")
     public ResponseEntity<JobSeeker> editJobSeeker(@RequestBody JobSeeker jobSeeker){
         JobSeeker editJobSeeker = jobSeekerService.editJobSeeker(jobSeeker);
         return new ResponseEntity<>(editJobSeeker, HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "http://localhost:3000")
     @PutMapping("/editeducation/{educationId}")
     public ResponseEntity<JobSeeker> editEducation(@PathVariable("educationId") int educationId, @RequestBody Education education){
         jobSeekerService.editEducation(education, educationId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "http://localhost:3000")
     @PutMapping("/editemploymenthistory/{employmentHistoryId}")
     public ResponseEntity<EmploymentHistory> editEmploymentHistory(@PathVariable("employmentHistoryId") int employmentHistoryId, @RequestBody EmploymentHistory employmentHistory){
        jobSeekerService.editEmploymentHistory(employmentHistory, employmentHistoryId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "http://localhost:3000")
     @DeleteMapping("/deleteeducation/{educationId}")
     public ResponseEntity<?> deleteEducation(@PathVariable("educationId") int educationId){
         jobSeekerService.deleteEducation(educationId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "http://localhost:3000")
     @DeleteMapping("/deleteemploymenthistory/{employmentHistoryId}")
     public ResponseEntity<?> deleteEmploymentHistory(@PathVariable("employmentHistoryId") int employmentHistoryId){
         jobSeekerService.deleteEmploymentHistory(employmentHistoryId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "http://localhost:3000")
     @PutMapping("/addskill/{id}")
     public ResponseEntity<?> addskillJobSeeker(@RequestBody Skills skill, @PathVariable("id") int id){
         jobSeekerService.addSkills(id,skill);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "http://localhost:3000")
     @DeleteMapping("/deleteskill/{skillId}")
     public ResponseEntity<?> deleteSkill(@PathVariable("skillId") int skillId){
         jobSeekerService.deleteSkills(skillId);

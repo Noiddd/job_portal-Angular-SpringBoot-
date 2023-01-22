@@ -120,7 +120,6 @@ export class JobseekerRegisterComponent {
       return false;
     } else {
       this.uniqueEmail();
-      console.log('email good');
       this.emailError = false;
       return true;
     }
