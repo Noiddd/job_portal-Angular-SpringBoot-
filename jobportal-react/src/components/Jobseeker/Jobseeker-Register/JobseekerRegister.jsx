@@ -40,6 +40,7 @@ const JobseekerRegister = () => {
     ) {
       e.preventDefault();
 
+      cl;
       registerJobSeekerAPI("add", formData);
     }
   };
