@@ -9,13 +9,8 @@ import {
   JobseekerLogin,
   JobseekerResume,
 } from "./components";
-import AuthContext from "./components/contexts/AuthContext";
-import { useState } from "react";
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [jobSeekerData, setJobSeekerData] = useState();
-
   return (
     <>
       <Navbar></Navbar>
@@ -30,10 +25,7 @@ const App = () => {
           path="/jobseeker/registersuccess"
           element={<JobseekerRegisterSuccess />}
         ></Route>
-        <Route
-          path="/jobseeker/login"
-          element={<JobseekerLogin setIsLoggedIn={setIsLoggedIn} />}
-        ></Route>
+        <Route path="/jobseeker/login" element={<JobseekerLogin />}></Route>
         <Route path="/jobseeker/resume" element={<JobseekerResume />}></Route>
       </Routes>
     </>
