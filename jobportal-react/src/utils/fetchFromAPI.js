@@ -22,3 +22,26 @@ export const loginJobSeekerAPI = async (email, password) => {
   );
   return data;
 };
+
+// Employment History
+
+export const addEmploymentHistoryAPI = async (employmentHistory) => {
+  const jobSeekerData = JSON.parse(
+    window.localStorage.getItem("jobSeekerData")
+  )[0];
+
+  const { data } = await axios.put(
+    `${baseURL}/jobseeker/addemploymenthistory/${jobSeekerData.id}`,
+    employmentHistory
+  );
+
+  return data;
+};
+
+export const editEmploymentHistoryAPI = async (employmentHistory) => {
+  const { data } = await axios.put(
+    `${baseURL}/jobseeker/editemploymenthistory/${employmentHistory.id}`,
+    employmentHistory
+  );
+  return data;
+};

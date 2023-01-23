@@ -1,0 +1,36 @@
+.employmentCard {
+  margin-top: 10px;
+  width: 1700px;
+  padding: 40px;
+  background: #fda16e;
+  box-sizing: border-box;
+  border-radius: 10px;
+  z-index: 999999999;
+  display: flex;
+  justify-content: space-between;
+}
+
+.employmentCardRight {
+  display: flex;
+  flex-direction: column;
+}
+
+.date {
+  display: flex;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.iconPen {
+  position: absolute;
+  top: 25px;
+  right: 280px;
+  cursor: pointer;
+}
+
+.iconX {
+  position: absolute;
+  top: 19px;
+  right: 250px;
+  cursor: pointer;
+}
