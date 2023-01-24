@@ -8,13 +8,13 @@ import { useEffect } from "react";
 
 const JobseekerResumeEditEmploymentHistory = (props) => {
   useEffect(() => {
-    setJobTitle(props.editJobSeeker.jobTitle);
-    setCompany(props.editJobSeeker.company);
-    setJobDescription(props.editJobSeeker.jobDescription);
-    setStartDate(props.editJobSeeker.startDate);
-    setEndDate(props.editJobSeeker.endDate);
-    console.log(props.editJobSeeker);
-  }, []);
+    setJobTitle(props.editEmploymentHistory.jobTitle);
+    setCompany(props.editEmploymentHistory.company);
+    setJobDescription(props.editEmploymentHistory.jobDescription);
+    setStartDate(props.editEmploymentHistory.startDate);
+    setEndDate(props.editEmploymentHistory.endDate);
+    console.log(props.editEmploymentHistory);
+  }, [props.editEmploymentHistory]);
 
   let [jobTitle, setJobTitle] = useState("");
   let [company, setCompany] = useState("");
@@ -22,7 +22,7 @@ const JobseekerResumeEditEmploymentHistory = (props) => {
   let [startDate, setStartDate] = useState("");
   let [endDate, setEndDate] = useState("");
 
-  const [formData, setFormData] = useState(props.editJobSeeker);
+  const [formData, setFormData] = useState(props.editEmploymentHistory);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -149,7 +149,7 @@ const JobseekerResumeEditEmploymentHistory = (props) => {
         </form>
       </div>
     </>,
-    document.querySelector("#addEmploymentHistoryModal")
+    document.querySelector("#editEmploymentHistoryModal")
   );
 };
 

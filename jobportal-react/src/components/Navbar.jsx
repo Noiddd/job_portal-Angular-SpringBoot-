@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import styles from "../styles/Navbar.module.css";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   let [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -9,6 +10,13 @@ const Navbar = () => {
   useEffect(() => {
     setIsLoggedIn(JSON.parse(window.localStorage.getItem("isLoggedIn")));
   }, []);
+
+  let navigate = useNavigate();
+
+  const logOut = () => {
+    localStorage.clear();
+    navigate("/");
+  };
 
   if (isLoggedIn) {
     return (
@@ -27,6 +35,11 @@ const Navbar = () => {
               <Link className={styles.Link} to="/jobseeker/profile">
                 Profile
               </Link>
+            </li>
+            <li>
+              <div className={styles.Link} onClick={logOut}>
+                Log Out
+              </div>
             </li>
           </ul>
         </nav>

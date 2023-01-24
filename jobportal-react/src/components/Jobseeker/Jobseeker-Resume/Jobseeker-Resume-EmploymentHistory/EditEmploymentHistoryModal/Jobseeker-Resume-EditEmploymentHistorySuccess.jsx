@@ -3,14 +3,10 @@ import ReactDOM from "react-dom";
 import styles from "../../../../../styles/JobseekerResumeAddEmploymentHistory.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import { useNavigate } from "react-router-dom";
 
 const JobseekerResumeEditEmploymentHistorySuccess = (props) => {
-  let navigate = useNavigate();
-
   const backToResumePage = () => {
     props.hideEditEmploymentHistorySuccess();
-    navigate("/jobseeker/resume");
   };
   return ReactDOM.createPortal(
     <>
@@ -33,7 +29,7 @@ const JobseekerResumeEditEmploymentHistorySuccess = (props) => {
         </form>
       </div>
     </>,
-    document.querySelector("#addEmploymentHistorySuccessModal")
+    document.querySelector("#editEmploymentHistorySuccessModal")
   );
 };
 

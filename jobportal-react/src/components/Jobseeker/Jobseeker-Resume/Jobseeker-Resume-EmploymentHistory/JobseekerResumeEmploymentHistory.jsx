@@ -8,7 +8,9 @@ const JobseekerResumeEmploymentHistory = (props) => {
     props.openEditEmploymentHistory(props.jobSeekerData);
   };
 
-  const deleteEmploymentHistory = () => {};
+  const deleteEmploymentHistory = () => {
+    props.openDeleteEmploymentHistory(props.jobSeekerData);
+  };
   return (
     <div className={styles.employmentCard}>
       <div className={styles.employmentCardLeft}>

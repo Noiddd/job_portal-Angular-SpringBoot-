@@ -3,16 +3,25 @@ import ReactDOM from "react-dom";
 import styles from "../../../../../styles/JobseekerResumeAddEmploymentHistory.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { deleteEmploymentHistoryAPI } from "../../../../../utils/fetchFromAPI";
 
-const JobseekerResumeAddEmploymentHistorySuccess = (props) => {
+const JobseekerResumeDeleteEmploymentHistory = (props) => {
   const backToResumePage = () => {
-    props.hideAddEmploymentHistorySuccess();
+    props.hideDeleteEmploymentHistory();
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    deleteEmploymentHistoryAPI(props.deleteEmploymentHistory);
+    props.hideDeleteEmploymentHistory();
+    props.openDeleteEmploymentHistorySuccess();
+  };
+
   return ReactDOM.createPortal(
     <>
       <div className={styles.overlay} onClick={backToResumePage}></div>
       <div className={styles.modalContainer}>
-        <h2>Employment History Added Successfully</h2>
+        <h2>Delete Employment History</h2>
 
         <div className={styles.xIcon}>
           <FontAwesomeIcon
@@ -22,15 +31,15 @@ const JobseekerResumeAddEmploymentHistorySuccess = (props) => {
           />
         </div>
 
-        <form onSubmit={backToResumePage}>
+        <form onSubmit={handleSubmit}>
           <button className={styles.submitBtn} type="submit">
-            Return Home
+            Delete
           </button>
         </form>
       </div>
     </>,
-    document.querySelector("#addEmploymentHistorySuccessModal")
+    document.querySelector("#deleteEmploymentHistoryModal")
   );
 };
 
-export default JobseekerResumeAddEmploymentHistorySuccess;
+export default JobseekerResumeDeleteEmploymentHistory;

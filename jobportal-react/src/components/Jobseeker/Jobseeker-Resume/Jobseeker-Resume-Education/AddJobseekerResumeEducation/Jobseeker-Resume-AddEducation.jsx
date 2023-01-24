@@ -3,17 +3,17 @@ import ReactDOM from "react-dom";
 import styles from "../../../../../styles/JobseekerResumeAddEmploymentHistory.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import { addEmploymentHistoryAPI } from "../../../../../utils/fetchFromAPI";
+import { addEducationAPI } from "../../../../../utils/fetchFromAPI";
 
-const JobseekerResumeAddEmploymentHistory = (props) => {
+const JobseekerResumeAddEducation = (props) => {
   const [formData, setFormData] = useState({});
 
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
-      const response = await addEmploymentHistoryAPI(formData);
-      props.hideAddEmploymentHistory();
-      props.openAddEmploymentHistorySuccess();
+      const response = await addEducationAPI(formData);
+      props.hideAddEducation();
+      props.openAddEducationSuccess();
     } catch (error) {
       console.log(error);
     }
@@ -28,18 +28,15 @@ const JobseekerResumeAddEmploymentHistory = (props) => {
 
   return ReactDOM.createPortal(
     <>
-      <div
-        className={styles.overlay}
-        onClick={props.hideAddEmploymentHistory}
-      ></div>
+      <div className={styles.overlay} onClick={props.hideAddEducation}></div>
       <div className={styles.modalContainer}>
-        <h2>Add Employment History</h2>
+        <h2>Add Education</h2>
 
         <div className={styles.xIcon}>
           <FontAwesomeIcon
             icon={faXmark}
             size="lg"
-            onClick={props.hideAddEmploymentHistory}
+            onClick={props.hideAddEducation}
           />
         </div>
 
@@ -48,13 +45,13 @@ const JobseekerResumeAddEmploymentHistory = (props) => {
             <div className={styles.userBox}>
               <input
                 type="text"
-                name="jobTitle"
+                name="institute"
                 required
                 className={styles.inputField}
-                id="jobTitleId"
+                id="instituteId"
                 onChange={handleChange}
               />
-              <label className={styles.label}>Job Title</label>
+              <label className={styles.label}>Institute</label>
             </div>
           </div>
 
@@ -62,27 +59,13 @@ const JobseekerResumeAddEmploymentHistory = (props) => {
             <div className={styles.userBox}>
               <input
                 type="text"
-                name="company"
+                name="qualification"
                 required
                 className={styles.inputField}
-                id="companyId"
+                id="qualificationId"
                 onChange={handleChange}
               />
-              <label className={styles.label}>Company</label>
-            </div>
-          </div>
-
-          <div className={styles.inputControl}>
-            <div className={styles.userBox}>
-              <input
-                type="text"
-                name="jobDescription"
-                required
-                className={styles.inputField}
-                id="jobDescriptionId"
-                onChange={handleChange}
-              />
-              <label className={styles.label}>Job Description</label>
+              <label className={styles.label}>Qualification</label>
             </div>
           </div>
 
@@ -120,8 +103,8 @@ const JobseekerResumeAddEmploymentHistory = (props) => {
         </form>
       </div>
     </>,
-    document.querySelector("#addEmploymentHistoryModal")
+    document.querySelector("#addEducationModal")
   );
 };
 
-export default JobseekerResumeAddEmploymentHistory;
+export default JobseekerResumeAddEducation;

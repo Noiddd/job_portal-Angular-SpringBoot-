@@ -11,17 +11,149 @@ import JobseekerResumeAddEmploymentHistorySuccess from "./Jobseeker-Resume-Emplo
 import { loginJobSeekerAPI } from "../../../utils/fetchFromAPI";
 import JobseekerResumeEditEmploymentHistory from "./Jobseeker-Resume-EmploymentHistory/EditEmploymentHistoryModal/Jobseeker-Resume-EditEmploymentHistory";
 import JobseekerResumeEditEmploymentHistorySuccess from "./Jobseeker-Resume-EmploymentHistory/EditEmploymentHistoryModal/Jobseeker-Resume-EditEmploymentHistorySuccess";
+import JobseekerResumeDeleteEmploymentHistory from "./Jobseeker-Resume-EmploymentHistory/DeleteEmploymentHistoryModal/Jobseeker-Resume-DeleteEmploymentHistory";
+import JobseekerResumeDeleteEmploymentHistorySuccess from "./Jobseeker-Resume-EmploymentHistory/DeleteEmploymentHistoryModal/Jobseeker-Resume-DeleteEmploymentHistorySuccess";
+import JobseekerResumeAddEducation from "./Jobseeker-Resume-Education/AddJobseekerResumeEducation/Jobseeker-Resume-AddEducation";
+import JobseekerResumeAddEducationSuccess from "./Jobseeker-Resume-Education/AddJobseekerResumeEducation/Jobseeker-Resume-AddEducationSuccess";
+import JobseekerResumeEditEducation from "./Jobseeker-Resume-Education/EditJobseekerResumeEducation/Jobseeker-Resume-EditEducation";
+import JobseekerResumeEditEducationSuccess from "./Jobseeker-Resume-Education/EditJobseekerResumeEducation/Jobseeker-Resume-EditEducationSuccess";
+import JobseekerResumeDeleteEducation from "./Jobseeker-Resume-Education/DeleteJobseekerResumeEducation/Jobseeker-Resume-DeleteEducation";
+import JobseekerResumeDeleteEducationSuccess from "./Jobseeker-Resume-Education/DeleteJobseekerResumeEducation/Jobseeker-Resume-DeleteEducationSuccess";
 
 const JobseekerResume = () => {
   let [jobSeekerData, setJobSeekerData] = useState({});
+
+  // Employment History states and functions
   let [showAddEmploymentHistory, setShowAddEmploymentHistory] = useState(false);
   let [showAddEmploymentHistorySuccess, setShowAddEmploymentHistorySuccess] =
     useState(false);
+
   let [showEditEmploymentHistory, setShowEditEmploymentHistory] =
     useState(false);
   let [showEditEmploymentHistorySuccess, setShowEditEmploymentHistorySuccess] =
     useState(false);
-  let [editJobSeeker, setEditJobSeeker] = useState({});
+  let [editEmploymentHistory, setEditEmploymentHistory] = useState({});
+
+  let [showDeleteEmploymentHistory, setShowDeleteEmploymentHistory] =
+    useState(false);
+  let [
+    showDeleteEmploymentHistorySuccess,
+    setShowDeleteEmploymentHistorySuccess,
+  ] = useState(false);
+  let [deleteEmploymentHistory, setDeleteEmploymentHistory] = useState({});
+
+  const addEmploymentHistory = () => {
+    setShowAddEmploymentHistory(true);
+  };
+
+  const hideAddEmploymentHistory = () => {
+    setShowAddEmploymentHistory(false);
+  };
+
+  const openAddEmploymentHistorySuccess = () => {
+    setShowAddEmploymentHistorySuccess(true);
+  };
+
+  const hideAddEmploymentHistorySuccess = () => {
+    setShowAddEmploymentHistorySuccess(false);
+  };
+
+  const openEditEmploymentHistory = (editEmploymentHistory) => {
+    setShowEditEmploymentHistory(true);
+    setEditEmploymentHistory(editEmploymentHistory);
+  };
+
+  const hideEditEmploymentHistory = () => {
+    setShowEditEmploymentHistory(false);
+  };
+
+  const openEditEmploymentHistorySuccess = () => {
+    setShowEditEmploymentHistorySuccess(true);
+  };
+
+  const hideEditEmploymentHistorySuccess = () => {
+    setShowEditEmploymentHistorySuccess(false);
+  };
+
+  const openDeleteEmploymentHistory = (deleteEmploymentHistory) => {
+    setShowDeleteEmploymentHistory(true);
+    setDeleteEmploymentHistory(deleteEmploymentHistory);
+  };
+
+  const hideDeleteEmploymentHistory = () => {
+    setShowDeleteEmploymentHistory(false);
+  };
+
+  const openDeleteEmploymentHistorySuccess = () => {
+    setShowDeleteEmploymentHistorySuccess(true);
+  };
+
+  const hideDeleteEmploymentHistorySuccess = () => {
+    setShowDeleteEmploymentHistorySuccess(false);
+  };
+
+  // Education states and functions
+  let [showAddEducation, setShowAddEducation] = useState(false);
+  let [showAddEducationSuccess, setShowAddEducationSuccess] = useState(false);
+
+  let [showEditEducation, setShowEditEducation] = useState(false);
+  let [showEditEducationSuccess, setShowEditEducationSuccess] = useState(false);
+  let [editEducation, setEditEducation] = useState({});
+
+  let [showDeleteEducation, setShowDeleteEducation] = useState(false);
+  let [showDeleteEducationSuccess, setShowDeleteEducationSuccess] =
+    useState(false);
+  let [deleteEducation, setDeleteEducation] = useState({});
+
+  const addEducation = () => {
+    setShowAddEducation(true);
+  };
+
+  const hideAddEducation = () => {
+    setShowAddEducation(false);
+  };
+
+  const openAddEducationSuccess = () => {
+    setShowAddEducationSuccess(true);
+  };
+
+  const hideAddEducationSuccess = () => {
+    setShowAddEducationSuccess(false);
+  };
+
+  const openEditEducation = (editEducation) => {
+    setShowEditEducation(true);
+    setEditEducation(editEducation);
+  };
+
+  const hideEditEducation = () => {
+    setShowEditEducation(false);
+  };
+
+  const openEditEducationSuccess = () => {
+    setShowEditEducationSuccess(true);
+  };
+
+  const hideEditEducationSuccess = () => {
+    setShowEditEducationSuccess(false);
+  };
+
+  const openDeleteEducation = (deleteEducation) => {
+    setShowDeleteEducation(true);
+    setDeleteEducation(deleteEducation);
+  };
+
+  const hideDeleteEducation = () => {
+    setShowDeleteEducation(false);
+  };
+
+  const openDeleteEducationSuccess = () => {
+    setShowDeleteEducationSuccess(true);
+  };
+
+  const hideDeleteEducationSuccess = () => {
+    setShowDeleteEducationSuccess(false);
+  };
 
   useEffect(() => {
     const data = JSON.parse(window.localStorage.getItem("jobSeekerData"))[0];
@@ -52,40 +184,14 @@ const JobseekerResume = () => {
     fetchJobSeekerData();
 
     console.log("success");
-  }, [showAddEmploymentHistorySuccess, showEditEmploymentHistorySuccess]);
-
-  const addEmploymentHistory = () => {
-    setShowAddEmploymentHistory(true);
-  };
-
-  const hideAddEmploymentHistory = () => {
-    setShowAddEmploymentHistory(false);
-  };
-
-  const openAddEmploymentHistorySuccess = () => {
-    setShowAddEmploymentHistorySuccess(true);
-  };
-
-  const hideAddEmploymentHistorySuccess = () => {
-    setShowAddEmploymentHistorySuccess(false);
-  };
-
-  const openEditEmploymentHistory = (editJobSeeker) => {
-    setShowEditEmploymentHistory(true);
-    setEditJobSeeker(editJobSeeker);
-  };
-
-  const hideEditEmploymentHistory = () => {
-    setShowEditEmploymentHistory(false);
-  };
-
-  const openEditEmploymentHistorySuccess = () => {
-    setShowEditEmploymentHistorySuccess(true);
-  };
-
-  const hideEditEmploymentHistorySuccess = () => {
-    setShowEditEmploymentHistorySuccess(false);
-  };
+  }, [
+    showAddEmploymentHistorySuccess,
+    showEditEmploymentHistorySuccess,
+    showDeleteEmploymentHistorySuccess,
+    showAddEducationSuccess,
+    showEditEducationSuccess,
+    showDeleteEducationSuccess,
+  ]);
 
   return (
     <>
@@ -105,12 +211,66 @@ const JobseekerResume = () => {
         <JobseekerResumeEditEmploymentHistory
           openEditEmploymentHistorySuccess={openEditEmploymentHistorySuccess}
           hideEditEmploymentHistory={hideEditEmploymentHistory}
-          editJobSeeker={editJobSeeker}
+          editEmploymentHistory={editEmploymentHistory}
         />
       )}
       {showEditEmploymentHistorySuccess && (
         <JobseekerResumeEditEmploymentHistorySuccess
           hideEditEmploymentHistorySuccess={hideEditEmploymentHistorySuccess}
+        />
+      )}
+      {showDeleteEmploymentHistory && (
+        <JobseekerResumeDeleteEmploymentHistory
+          hideDeleteEmploymentHistory={hideDeleteEmploymentHistory}
+          deleteEmploymentHistory={deleteEmploymentHistory}
+          openDeleteEmploymentHistorySuccess={
+            openDeleteEmploymentHistorySuccess
+          }
+        />
+      )}
+      {showDeleteEmploymentHistorySuccess && (
+        <JobseekerResumeDeleteEmploymentHistorySuccess
+          hideDeleteEmploymentHistorySuccess={
+            hideDeleteEmploymentHistorySuccess
+          }
+        />
+      )}
+      {showAddEducation && (
+        <JobseekerResumeAddEducation
+          hideAddEducation={hideAddEducation}
+          openAddEducationSuccess={openAddEducationSuccess}
+        />
+      )}
+      {showAddEducationSuccess && (
+        <JobseekerResumeAddEducationSuccess
+          hideAddEducationSuccess={hideAddEducationSuccess}
+        />
+      )}
+
+      {showEditEducation && (
+        <JobseekerResumeEditEducation
+          editEducation={editEducation}
+          hideEditEducation={hideEditEducation}
+          openEditEducationSuccess={openEditEducationSuccess}
+        />
+      )}
+
+      {showEditEducationSuccess && (
+        <JobseekerResumeEditEducationSuccess
+          hideEditEducationSuccess={hideEditEducationSuccess}
+        />
+      )}
+
+      {showDeleteEducation && (
+        <JobseekerResumeDeleteEducation
+          hideDeleteEducation={hideDeleteEducation}
+          deleteEducation={deleteEducation}
+          openDeleteEducationSuccess={openDeleteEducationSuccess}
+        />
+      )}
+      {showDeleteEducationSuccess && (
+        <JobseekerResumeDeleteEducationSuccess
+          hideDeleteEducationSuccess={hideDeleteEducationSuccess}
         />
       )}
 
@@ -134,6 +294,7 @@ const JobseekerResume = () => {
                   key={index}
                   jobSeekerData={data}
                   openEditEmploymentHistory={openEditEmploymentHistory}
+                  openDeleteEmploymentHistory={openDeleteEmploymentHistory}
                 />
               </div>
             );
@@ -147,11 +308,19 @@ const JobseekerResume = () => {
               icon={faPlus}
               size="lg"
               className={styles.faPlus}
+              onClick={addEducation}
             />
           </div>
           {jobSeekerData.educationList?.map((data, index) => {
             return (
-              <JobseekerResumeEducation key={index} jobSeekerData={data} />
+              <div className={styles.employmentHistoryList}>
+                <JobseekerResumeEducation
+                  key={index}
+                  jobSeekerData={data}
+                  openEditEducation={openEditEducation}
+                  openDeleteEducation={openDeleteEducation}
+                />
+              </div>
             );
           })}
         </div>

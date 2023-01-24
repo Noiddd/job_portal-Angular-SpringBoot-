@@ -24,7 +24,7 @@
 
 .employmentSubTitle {
   display: flex;
-  gap: 1400px;
+  gap: 1415px;
 }
 
 .faPlus {
@@ -39,7 +39,7 @@
 
 .educationSubTitle {
   display: flex;
-  gap: 1518px;
+  gap: 1533px;
 }
 
 .employmentHistoryList {
@@ -57,5 +57,5 @@
 
 .skillsSubTitle {
   display: flex;
-  gap: 1573px;
+  gap: 1587px;
 }

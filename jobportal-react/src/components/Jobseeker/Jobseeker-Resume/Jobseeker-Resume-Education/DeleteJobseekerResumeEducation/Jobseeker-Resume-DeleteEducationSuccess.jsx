@@ -4,15 +4,16 @@ import styles from "../../../../../styles/JobseekerResumeAddEmploymentHistory.mo
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
-const JobseekerResumeAddEmploymentHistorySuccess = (props) => {
+const JobseekerResumeDeleteEducationSuccess = (props) => {
   const backToResumePage = () => {
-    props.hideAddEmploymentHistorySuccess();
+    props.hideDeleteEducationSuccess();
   };
+
   return ReactDOM.createPortal(
     <>
       <div className={styles.overlay} onClick={backToResumePage}></div>
       <div className={styles.modalContainer}>
-        <h2>Employment History Added Successfully</h2>
+        <h2>Delete Education Success</h2>
 
         <div className={styles.xIcon}>
           <FontAwesomeIcon
@@ -29,8 +30,8 @@ const JobseekerResumeAddEmploymentHistorySuccess = (props) => {
         </form>
       </div>
     </>,
-    document.querySelector("#addEmploymentHistorySuccessModal")
+    document.querySelector("#deleteEducationSuccessModal")
   );
 };
 
-export default JobseekerResumeAddEmploymentHistorySuccess;
+export default JobseekerResumeDeleteEducationSuccess;

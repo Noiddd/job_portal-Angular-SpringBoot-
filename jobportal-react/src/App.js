@@ -9,6 +9,8 @@ import {
   JobseekerLogin,
   JobseekerResume,
 } from "./components";
+import JobseekerProfile from "./components/Jobseeker/Jobseeker-Profile/JobseekerProfile";
+import JobseekerProfileSuccess from "./components/Jobseeker/Jobseeker-Profile/JobseekerProfileSuccess";
 
 const App = () => {
   return (
@@ -27,6 +29,11 @@ const App = () => {
         ></Route>
         <Route path="/jobseeker/login" element={<JobseekerLogin />}></Route>
         <Route path="/jobseeker/resume" element={<JobseekerResume />}></Route>
+        <Route path="/jobseeker/profile" element={<JobseekerProfile />}></Route>
+        <Route
+          path="/jobseeker/profilesuccess"
+          element={<JobseekerProfileSuccess />}
+        ></Route>
       </Routes>
     </>
   );
