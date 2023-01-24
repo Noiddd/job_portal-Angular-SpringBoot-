@@ -64,8 +64,10 @@ const JobseekerProfile = (props) => {
     }));
   };
 
-  const handleSubmit = async (e) => {
-    const setLocalStorage = (response) => {
+  const handleSubmit = (e) => {
+    const getUpdatedProfile = async () => {
+      const response = await editProfileAPI(formData);
+      console.log(response);
       window.localStorage.setItem("jobSeekerData", JSON.stringify([response]));
     };
 
@@ -79,9 +81,7 @@ const JobseekerProfile = (props) => {
         uniqueEmailTest()
       ) {
         e.preventDefault();
-        const response = await editProfileAPI(formData);
-        setTimeout(setLocalStorage(response), 1000);
-        console.log(response);
+        getUpdatedProfile();
         navigate("/jobseeker/profilesuccess");
       } else {
         e.preventDefault();
@@ -95,7 +95,6 @@ const JobseekerProfile = (props) => {
   const uniqueEmail = async (email) => {
     try {
       const response = await checkUniqueEmailAPI(email);
-
       setUniqueEmailReturn(response);
       console.log(response);
     } catch (error) {

@@ -158,30 +158,27 @@ const JobseekerResume = () => {
   useEffect(() => {
     const data = JSON.parse(window.localStorage.getItem("jobSeekerData"))[0];
     setJobSeekerData(data);
-    console.log("normal");
+    console.log("Set jobSeekerData on enter of resume");
   }, []);
 
   useEffect(() => {
     const data = JSON.parse(window.localStorage.getItem("jobSeekerData"))[0];
 
-    const setLocalStorage = (response) => {
+    const fetchJobSeekerData = async () => {
+      const response = await loginJobSeekerAPI(data.email, data.password);
       window.localStorage.setItem("jobSeekerData", JSON.stringify(response));
       const updatedData = JSON.parse(
         window.localStorage.getItem("jobSeekerData")
       )[0];
       setJobSeekerData(updatedData);
+      console.log("Set new jobSeekerData on state change");
     };
 
-    const fetchJobSeekerData = async () => {
-      try {
-        if (data !== null) {
-          const response = await loginJobSeekerAPI(data.email, data.password);
-          setTimeout(setLocalStorage(response), 1000);
-        }
-      } catch (error) {}
-    };
-
-    fetchJobSeekerData();
+    try {
+      if (data !== null) {
+        fetchJobSeekerData();
+      }
+    } catch (error) {}
 
     console.log("success");
   }, [
