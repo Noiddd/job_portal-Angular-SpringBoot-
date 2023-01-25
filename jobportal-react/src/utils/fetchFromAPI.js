@@ -85,3 +85,25 @@ export const deleteEducationAPI = async (education) => {
   );
   return data;
 };
+
+// Skills
+
+export const addSkillAPI = async (skill) => {
+  const jobSeekerData = JSON.parse(
+    window.localStorage.getItem("jobSeekerData")
+  )[0];
+
+  const { data } = await axios.put(
+    `${baseURL}/jobseeker/addskill/${jobSeekerData.id}`,
+    skill
+  );
+
+  return data;
+};
+
+export const deleteSkillAPI = async (skill) => {
+  const { data } = await axios.delete(
+    `${baseURL}/jobseeker/deleteskill/${skill.id}`
+  );
+  return data;
+};

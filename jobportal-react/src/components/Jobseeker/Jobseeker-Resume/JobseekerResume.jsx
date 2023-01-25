@@ -19,6 +19,9 @@ import JobseekerResumeEditEducation from "./Jobseeker-Resume-Education/EditJobse
 import JobseekerResumeEditEducationSuccess from "./Jobseeker-Resume-Education/EditJobseekerResumeEducation/Jobseeker-Resume-EditEducationSuccess";
 import JobseekerResumeDeleteEducation from "./Jobseeker-Resume-Education/DeleteJobseekerResumeEducation/Jobseeker-Resume-DeleteEducation";
 import JobseekerResumeDeleteEducationSuccess from "./Jobseeker-Resume-Education/DeleteJobseekerResumeEducation/Jobseeker-Resume-DeleteEducationSuccess";
+import JobseekerResumeEditSkill from "./Jobseeker-Resume-Skills/EditJobseekerResumeSkill/Jobseeker-Resume-EditSkill";
+import JobseekerResumeEditSkillsSuccess from "./Jobseeker-Resume-Skills/EditJobseekerResumeSkill/Jobseeker-Resume-EditSkillsSuccess";
+import JobseekerResumeDeleteSkill from "./Jobseeker-Resume-Skills/EditJobseekerResumeSkill/Jobseeker-Resume-DeleteSkill";
 
 const JobseekerResume = () => {
   let [jobSeekerData, setJobSeekerData] = useState({});
@@ -155,6 +158,44 @@ const JobseekerResume = () => {
     setShowDeleteEducationSuccess(false);
   };
 
+  // Skills states and functions
+
+  let [showEditSkills, setShowEditSkills] = useState(false);
+  let [showEditSkillsSuccess, setShowEditSkillsSuccess] = useState(false);
+  let [editSkills, setEditSkills] = useState({});
+  let [showDeleteSkills, setShowDeleteSkills] = useState(false);
+  let [showDeleteSkillsSuccess, setShowDeleteSkillsSuccess] = useState(false);
+  let [deleteSkills, setDeleteSkills] = useState({});
+
+  const openEditSkills = (editSkills) => {
+    setShowEditSkills(true);
+    setEditSkills(editSkills);
+  };
+
+  const hideEditSkills = () => {
+    setShowEditSkills(false);
+  };
+
+  const openEditSkillsSuccess = () => {
+    setShowEditSkillsSuccess(true);
+    setShowDeleteSkillsSuccess(true);
+  };
+
+  const hideEditSkillsSuccess = () => {
+    setShowEditSkillsSuccess(false);
+    setShowDeleteSkillsSuccess(false);
+  };
+
+  const openDeleteSkill = (data) => {
+    console.log(data);
+    setShowDeleteSkills(true);
+    setDeleteSkills(data);
+  };
+
+  const hideDeleteSkill = () => {
+    setShowDeleteSkills(false);
+  };
+
   useEffect(() => {
     const data = JSON.parse(window.localStorage.getItem("jobSeekerData"))[0];
     setJobSeekerData(data);
@@ -188,6 +229,8 @@ const JobseekerResume = () => {
     showAddEducationSuccess,
     showEditEducationSuccess,
     showDeleteEducationSuccess,
+    showEditSkillsSuccess,
+    showDeleteSkillsSuccess,
   ]);
 
   return (
@@ -270,6 +313,29 @@ const JobseekerResume = () => {
           hideDeleteEducationSuccess={hideDeleteEducationSuccess}
         />
       )}
+      {showEditSkills && (
+        <JobseekerResumeEditSkill
+          hideEditSkills={hideEditSkills}
+          openEditSkillsSuccess={openEditSkillsSuccess}
+          skillsList={jobSeekerData.skillsList}
+          openDeleteSkill={openDeleteSkill}
+        />
+      )}
+
+      {(showEditSkillsSuccess || showDeleteSkillsSuccess) && (
+        <JobseekerResumeEditSkillsSuccess
+          hideEditSkillsSuccess={hideEditSkillsSuccess}
+          openEditSkills={openEditSkills}
+        />
+      )}
+
+      {showDeleteSkills && (
+        <JobseekerResumeDeleteSkill
+          hideDeleteSkill={hideDeleteSkill}
+          openEditSkillsSuccess={openEditSkillsSuccess}
+          deleteSkills={deleteSkills}
+        />
+      )}
 
       <div className={styles.container}>
         <h1 className={styles.title}>JobSeeker Resume</h1>
@@ -329,11 +395,14 @@ const JobseekerResume = () => {
               icon={faPlus}
               size="lg"
               className={styles.faPlus}
+              onClick={openEditSkills}
             />
           </div>
-          {jobSeekerData.skillsList?.map((data, index) => {
-            return <JobseekerResumeSkills key={index} jobSeekerData={data} />;
-          })}
+          <div className={styles.skillsList}>
+            {jobSeekerData.skillsList?.map((data, index) => {
+              return <JobseekerResumeSkills key={index} jobSeekerData={data} />;
+            })}
+          </div>
         </div>
       </div>
     </>

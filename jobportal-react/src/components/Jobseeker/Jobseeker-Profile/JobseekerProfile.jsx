@@ -103,11 +103,11 @@ const JobseekerProfile = (props) => {
   };
 
   const uniqueEmailTest = () => {
-    if (uniqueEmailReturn.length == 0) {
+    if (uniqueEmailReturn.length === 0) {
       setUniqueEmailError(false);
       console.log("pass1");
       return true;
-    } else if (uniqueEmailReturn[0].id == formData.id) {
+    } else if (uniqueEmailReturn[0].id === formData.id) {
       setUniqueEmailError(false);
       console.log("pass2");
       return true;

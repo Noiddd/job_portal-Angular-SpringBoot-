@@ -53,9 +53,18 @@
   margin-top: 40px;
   position: relative;
   left: 6%;
+  width: 89.3%;
+  margin-bottom: 40px;
 }
 
 .skillsSubTitle {
   display: flex;
-  gap: 1587px;
+  gap: 1592px;
+}
+
+.skillsList {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
 }
