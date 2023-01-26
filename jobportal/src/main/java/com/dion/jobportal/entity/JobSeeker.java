@@ -1,5 +1,6 @@
 package com.dion.jobportal.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -33,6 +34,14 @@ public class JobSeeker implements Serializable {
     @OneToMany(mappedBy = "jobSeeker")
     private List<Skills> skillsList = new ArrayList<>();
 
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "jobseeker_jobpost",
+            joinColumns = @JoinColumn(name="jobseeker_id"),
+            inverseJoinColumns = @JoinColumn(name = "jobpost_id")
+    )
+    @JsonIgnore
+    private List<JobPost> appliedJobsList = new ArrayList<>();
 
     public JobSeeker(String firstName, String lastName, String phone, String email, String password) {
         this.firstName = firstName;
@@ -77,6 +86,26 @@ public class JobSeeker implements Serializable {
 
     public void removeSkill(Skills skill){
         skillsList.remove(skill);
+    }
+
+    public void addAppliedJobsList(JobPost jobPost){
+        if(appliedJobsList == null){
+            appliedJobsList = new ArrayList<>();
+        }
+        appliedJobsList.add(jobPost);
+    }
+
+    public void removeAppliedJobsList(JobPost jobPost){
+        appliedJobsList.remove(jobPost);
+    }
+
+
+    public List<JobPost> getAppliedJobsList() {
+        return appliedJobsList;
+    }
+
+    public void setAppliedJobsList(List<JobPost> appliedJobsList) {
+        this.appliedJobsList = appliedJobsList;
     }
 
     public List<Education> getEducationList() {

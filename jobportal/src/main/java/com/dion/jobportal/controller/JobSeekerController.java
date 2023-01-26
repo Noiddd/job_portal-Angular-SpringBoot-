@@ -1,9 +1,6 @@
 package com.dion.jobportal.controller;
 
-import com.dion.jobportal.entity.Education;
-import com.dion.jobportal.entity.EmploymentHistory;
-import com.dion.jobportal.entity.JobSeeker;
-import com.dion.jobportal.entity.Skills;
+import com.dion.jobportal.entity.*;
 import com.dion.jobportal.repository.EducationRepository;
 import com.dion.jobportal.service.JobSeekerService;
 import org.springframework.http.HttpStatus;
@@ -114,5 +111,20 @@ public class JobSeekerController {
         jobSeekerService.deleteSkills(skillId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PutMapping("/applyjobpost/{id}")
+    public ResponseEntity<?> applyJobPost(@RequestBody JobPost jobPost, @PathVariable("id") int id){
+        jobSeekerService.applyJobPost(id,jobPost);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping("/appliedjobs/{id}")
+    public ResponseEntity<List<JobPost>> findAppliedJobs(@PathVariable("id") int id){
+        List<JobPost> appliedJobPost = jobSeekerService.findAllAppliedJobs(id);
+        return new ResponseEntity<>(appliedJobPost, HttpStatus.OK);
+    }
+
 
 }

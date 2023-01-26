@@ -1,18 +1,13 @@
 package com.dion.jobportal.service;
 
-import com.dion.jobportal.entity.Education;
-import com.dion.jobportal.entity.EmploymentHistory;
-import com.dion.jobportal.entity.JobSeeker;
-import com.dion.jobportal.entity.Skills;
+import com.dion.jobportal.entity.*;
 import com.dion.jobportal.exception.UserNotFoundException;
-import com.dion.jobportal.repository.EducationRepository;
-import com.dion.jobportal.repository.EmploymentHistoryRepository;
-import com.dion.jobportal.repository.JobSeekerRepository;
-import com.dion.jobportal.repository.SkillsRepository;
+import com.dion.jobportal.repository.*;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.batch.BatchProperties;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -21,16 +16,20 @@ import java.util.List;
 public class JobSeekerService  {
     private final JobSeekerRepository jobSeekerRepository;
     private final EducationRepository educationRepository;
+    private final JobPostRepository jobPostRepository;
 
     @Autowired
     public JobSeekerService(JobSeekerRepository jobSeekerRepository,
                             EducationRepository educationRepository,
                             EmploymentHistoryRepository employmentHistoryRepository,
-                            SkillsRepository skillsRepository) {
+                            SkillsRepository skillsRepository,
+                            JobPostRepository jobPostRepository
+                            ) {
         this.jobSeekerRepository = jobSeekerRepository;
         this.educationRepository = educationRepository;
         this.employmentHistoryRepository = employmentHistoryRepository;
         this.skillsRepository = skillsRepository;
+        this.jobPostRepository = jobPostRepository;
     }
 
     @Autowired
@@ -97,6 +96,7 @@ public class JobSeekerService  {
 
     }
 
+
     @Transactional
     public void editEmploymentHistory(EmploymentHistory employmentHistory, int employmentHistoryId) {
         EmploymentHistory editEmploymentHistory = employmentHistoryRepository.findById(employmentHistoryId).orElseThrow(()-> new UserNotFoundException("Employment history by id " + employmentHistoryId + " was not found"));
@@ -133,8 +133,6 @@ public class JobSeekerService  {
         skillsRepository.deleteById(skillsId);
     }
 
-
-
     public List<JobSeeker> loginJobSeeker(String email, String password){
        TypedQuery<JobSeeker> query =  em.createQuery("select js from JobSeeker js where js.email like ?1 and js.password like ?2", JobSeeker.class).setParameter(1, email).setParameter(2, password);
         return query.getResultList();
@@ -143,6 +141,26 @@ public class JobSeekerService  {
     public List<JobSeeker> checkUniqueEmail(String email){
         TypedQuery<JobSeeker> query = em.createQuery("select js from JobSeeker js where js.email like ?1", JobSeeker.class).setParameter(1, email);
         return query.getResultList();
+    }
+
+    // apply to jobs
+    @Transactional
+    public void applyJobPost(int jobSeekerId, JobPost jobPost){
+        JobSeeker jobSeeker = findById(jobSeekerId);
+
+        jobSeeker.addAppliedJobsList(jobPost);
+        jobPost.addJobSeekerApplied(jobSeeker);
+
+        em.persist(jobSeeker);
+
+    }
+
+    // get all applied jobs
+
+    @Transactional
+    public List<JobPost> findAllAppliedJobs(int id){
+        JobSeeker jobSeeker = em.find(JobSeeker.class, id);
+        return jobSeeker.getAppliedJobsList();
     }
 
 

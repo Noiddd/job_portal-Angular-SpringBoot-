@@ -231,6 +231,7 @@ const JobseekerResume = () => {
     showDeleteEducationSuccess,
     showEditSkillsSuccess,
     showDeleteSkillsSuccess,
+    showEditSkills,
   ]);
 
   return (
