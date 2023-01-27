@@ -15,7 +15,7 @@ public class JobPost implements Serializable {
     @Column(name="id")
     private int id;
 
-    @Column(name = "jobTitle")
+    @Column(name = "job_title")
     private String jobTitle;
 
     @Column(name = "description")
@@ -27,8 +27,11 @@ public class JobPost implements Serializable {
     @Column(name = "skills")
     private String skills;
 
-    @Column(name = "listingStatus")
+    @Column(name = "listing_status")
     private String listingStatus;
+
+    @Column(name = "employer_name")
+    private String employerName;
 
     @JsonIgnore
     @ManyToOne
@@ -38,12 +41,13 @@ public class JobPost implements Serializable {
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "appliedJobsList")
     private List<JobSeeker> jobSeekerAppliedList = new ArrayList<>();
 
-    public JobPost(String jobTitle, String description, String salary, String skills, String listingStatus) {
+    public JobPost(String jobTitle, String description, String salary, String skills, String listingStatus, String employerName) {
         this.jobTitle = jobTitle;
         this.description = description;
         this.salary = salary;
         this.skills = skills;
         this.listingStatus = listingStatus;
+        this.employerName = employerName;
     }
 
     public JobPost(){
@@ -119,5 +123,13 @@ public class JobPost implements Serializable {
 
     public void setEmployer(Employer employer) {
         this.employer = employer;
+    }
+
+    public String getEmployerName() {
+        return employerName;
+    }
+
+    public void setEmployerName(String employerName) {
+        this.employerName = employerName;
     }
 }

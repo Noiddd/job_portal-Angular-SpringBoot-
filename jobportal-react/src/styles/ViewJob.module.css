@@ -1,0 +1,48 @@
+.viewJobContainer {
+  position: fixed;
+  top: 27.8%;
+  left: 53.2%;
+  width: 700px;
+  height: 600px;
+  padding: 40px;
+  padding-top: 10px;
+  background: #f8d289;
+  box-sizing: border-box;
+  border-radius: 30px;
+  z-index: 999999999;
+}
+
+.employerName {
+  font-size: 55px;
+  font-weight: bold;
+  margin-top: 25px;
+  margin-left: 20px;
+}
+
+.jobTitle {
+  font-size: 27px;
+  font-weight: bold;
+  margin-top: 5px;
+  margin-left: 20px;
+}
+
+.salary {
+  font-size: 27px;
+  font-weight: bold;
+  margin-top: 5px;
+  margin-left: 20px;
+}
+
+.description {
+  font-size: 17px;
+  font-weight: bold;
+  margin-top: 35px;
+  margin-left: 20px;
+}
+
+.skills {
+  position: fixed;
+  bottom: 150px;
+  display: flex;
+  gap: 20px;
+}

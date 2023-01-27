@@ -1,0 +1,39 @@
+.jobContainer {
+  cursor: pointer;
+  background: #fda16e;
+  box-sizing: border-box;
+  border-radius: 30px;
+  height: 230px;
+  width: 230px;
+}
+
+.employerName {
+  font-size: 35px;
+  font-weight: bold;
+  margin-top: 25px;
+  margin-left: 20px;
+}
+
+.jobTitle {
+  font-size: 17px;
+  font-weight: bold;
+  margin-top: 5px;
+  margin-left: 20px;
+}
+
+.salary {
+  font-size: 17px;
+  font-weight: bold;
+  margin-top: 35px;
+  margin-left: 20px;
+}
+
+.skills {
+  margin-top: 5px;
+  margin-left: 20px;
+  margin-right: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 2px;
+}

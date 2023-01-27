@@ -15,7 +15,6 @@ import JobseekerProfileSuccess from "./components/Jobseeker/Jobseeker-Profile/Jo
 const App = () => {
   return (
     <>
-      <Navbar></Navbar>
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="/jobseeker/home" element={<JobseekerHome />}></Route>

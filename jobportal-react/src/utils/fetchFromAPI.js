@@ -107,3 +107,10 @@ export const deleteSkillAPI = async (skill) => {
   );
   return data;
 };
+
+// Job Posts
+
+export const getAllJobPosts = async () => {
+  const { data } = await axios.get(`${baseURL}/jobpost/jobs`);
+  return data;
+};

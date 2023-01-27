@@ -1,0 +1,15 @@
+.skillBubble {
+  cursor: pointer;
+  background: #f9b1a2;
+  box-sizing: border-box;
+  border-radius: 20px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+  font-size: 15px;
+  font-weight: bold;
+  width: 200px;
+}
