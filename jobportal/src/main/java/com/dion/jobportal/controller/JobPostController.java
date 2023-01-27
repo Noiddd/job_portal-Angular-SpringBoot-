@@ -15,7 +15,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/jobpost")
 public class JobPostController {
-
     private final JobPostService jobPostService;
 
     public JobPostController(JobPostService jobPostService) {
