@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import styles from "../../styles/JobseekerRegister.module.css";
 import { useNavigate } from "react-router-dom";
-import { loginJobSeekerAPI } from "../../utils/fetchFromAPI";
+import { loginEmployerAPI } from "../../utils/fetchFromAPI";
 import { Link } from "react-router-dom";
 import NavBar from "../Navbar";
 
-const JobseekerLogin = () => {
+const EmployerLogin = () => {
   let navigate = useNavigate();
 
   const [formData, setFormData] = useState({});
@@ -17,22 +17,22 @@ const JobseekerLogin = () => {
     if (!emailError && !passwordError) {
       try {
         e.preventDefault();
-        const response = await loginJobSeekerAPI(
+        const response = await loginEmployerAPI(
           formData.email,
           formData.password
         );
 
+        console.log(response);
+
         if (response.length == 0) {
           setInputError(true);
         } else {
-          window.localStorage.setItem(
-            "jobSeekerData",
-            JSON.stringify(response)
-          );
+          window.localStorage.setItem("employerData", JSON.stringify(response));
           window.localStorage.setItem("isLoggedIn", JSON.stringify(true));
+          window.localStorage.setItem("isEmployer", JSON.stringify(true));
           console.log(response);
           setInputError(false);
-          navigate("/jobseeker/home");
+          navigate("/employer/home");
         }
       } catch (error) {}
     } else {
@@ -79,7 +79,7 @@ const JobseekerLogin = () => {
     <>
       <NavBar />
       <div className={styles.modalContainer}>
-        <h2>JobSeeker Login</h2>
+        <h2>Employer Login</h2>
         {inputError ? (
           <h2>Email/password is incorrect... Please try again</h2>
         ) : (
@@ -133,7 +133,7 @@ const JobseekerLogin = () => {
           </div>
           <div className={styles.newUser}>
             <div>
-              New user? <Link to="/jobseeker/register">Register here</Link>
+              New employer? <Link to="/employer/register">Register here</Link>
             </div>
           </div>
 
@@ -146,4 +146,4 @@ const JobseekerLogin = () => {
   );
 };
 
-export default JobseekerLogin;
+export default EmployerLogin;

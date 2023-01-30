@@ -35,6 +35,11 @@ public class EmployerService {
         return employerRepository.save(employer);
     }
 
+    public Employer editEmployer(Employer employer){
+        return employerRepository.save(employer);
+    }
+
+
     public List<Employer> loginEmployer(String email, String password){
         TypedQuery<Employer> query =  em.createQuery("select e from Employer e where e.email like ?1 and e.password like ?2", Employer.class).setParameter(1, email).setParameter(2, password);
         return query.getResultList();
@@ -51,5 +56,10 @@ public class EmployerService {
 
         // save into database
         em.persist(jobPost);
+    }
+
+    public List<Employer> checkEmployerUniqueEmail(String email){
+        TypedQuery<Employer> query = em.createQuery("select em from Employer em where em.email like ?1", Employer.class).setParameter(1, email);
+        return query.getResultList();
     }
 }

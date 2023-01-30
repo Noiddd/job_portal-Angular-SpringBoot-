@@ -3,24 +3,21 @@
   height: 100%;
   width: 100%;
   top: 150px;
-  border: solid;
-  border-color: red;
   display: flex;
   flex-direction: row;
 }
 
 .homeLeftContainer {
-  border: solid;
   width: 50%;
   margin-left: 7%;
 }
 
 .homeRightContainer {
-  border: solid;
   width: 50%;
   margin-right: 7%;
 }
 .date {
+  margin-left: 4%;
   font-size: 70px;
   font-weight: bold;
 }

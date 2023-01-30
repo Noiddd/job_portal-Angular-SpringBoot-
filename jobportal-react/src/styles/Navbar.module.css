@@ -21,9 +21,11 @@ header {
 }
 
 .logo {
-  font-size: 35px;
+  font-size: 25px;
   letter-spacing: 1px;
   cursor: pointer;
+  text-decoration: none;
+  color: black;
 }
 
 nav ul li {

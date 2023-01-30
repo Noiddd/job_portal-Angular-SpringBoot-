@@ -27,8 +27,6 @@ public class EmployerController {
         return new ResponseEntity<>(employer, HttpStatus.OK);
     }
 
-
-
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/add")
     public ResponseEntity<Employer> addEmployer(@RequestBody Employer employer){
@@ -41,6 +39,20 @@ public class EmployerController {
     public ResponseEntity<?> addJobPostEmployer(@RequestBody JobPost jobPost, @PathVariable("id") int id){
         employerService.addJobPost(id,jobPost);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping("/uniqueemail/{email}")
+    public ResponseEntity<List<Employer>> checkEmployerUniqueEmail(@PathVariable("email") String email){
+        List<Employer> employer = employerService.checkEmployerUniqueEmail(email);
+        return new ResponseEntity<>(employer, HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PutMapping("/edit")
+    public ResponseEntity<Employer> editEmployer(@RequestBody Employer employer){
+        Employer editEmployer = employerService.editEmployer(employer);
+        return new ResponseEntity<>(editEmployer, HttpStatus.OK);
     }
 
 }

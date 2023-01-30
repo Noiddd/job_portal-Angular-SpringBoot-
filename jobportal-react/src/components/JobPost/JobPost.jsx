@@ -3,6 +3,7 @@ import styles from "../../styles/JobPost.module.css";
 
 const JobPost = (props) => {
   let [skills, setSkills] = useState([]);
+
   useEffect(() => {
     let skillsArray = props.jobData.skills.split(", ");
 

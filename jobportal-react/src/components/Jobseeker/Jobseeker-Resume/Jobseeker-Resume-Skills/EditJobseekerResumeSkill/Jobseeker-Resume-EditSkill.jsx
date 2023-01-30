@@ -12,7 +12,7 @@ const JobseekerResumeEditSkill = (props) => {
 
   useEffect(() => {
     setSkillsList(props.skillsList);
-  }, []);
+  }, [props.skillsList]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

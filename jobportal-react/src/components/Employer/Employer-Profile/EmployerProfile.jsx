@@ -1,35 +1,46 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "../../../styles/JobseekerRegister.module.css";
 import {
-  registerJobSeekerAPI,
-  checkUniqueEmailAPI,
+  editEmployerProfileAPI,
+  checkEmployerUniqueEmailAPI,
 } from "../../../utils/fetchFromAPI";
 import { useNavigate } from "react-router-dom";
-import NavBar from "../../Navbar";
+import Navbar from "../../Navbar";
 
-const JobseekerRegister = () => {
+const EmployerProfile = (props) => {
   const [formData, setFormData] = useState({});
 
-  let [firstNameError, setFirstNameError] = useState(false);
-  let [lastNameError, setLastNameError] = useState(false);
+  let [companyName, setCompanyName] = useState("");
+  let [email, setEmail] = useState("");
+  let [password, setPassword] = useState("");
+
   let [emailError, setEmailError] = useState(false);
-  let [phoneError, setPhoneError] = useState(false);
   let [passwordError, setPasswordError] = useState(false);
-  let [uniqueEmailReturn, setUniqueEmailReturn] = useState(false);
+  let [uniqueEmailReturn, setUniqueEmailReturn] = useState([]);
   let [uniqueEmailError, setUniqueEmailError] = useState(false);
+
+  useEffect(() => {
+    const employerData = JSON.parse(
+      window.localStorage.getItem("employerData")
+    )[0];
+    console.log(employerData);
+
+    setFormData(employerData);
+    setCompanyName(employerData.name);
+    setEmail(employerData.email);
+    setPassword(employerData.password);
+  }, []);
 
   let navigate = useNavigate();
 
   const handleChange = (e) => {
-    if (e.target.name === "firstName") {
-      validateFirstName(e.target.value);
-    } else if (e.target.name === "lastName") {
-      validateLastName(e.target.value);
+    if (e.target.name === "name") {
+      setCompanyName(e.target.value);
     } else if (e.target.name === "email") {
+      setEmail(e.target.value);
       validateEmail(e.target.value);
-    } else if (e.target.name === "phone") {
-      validatePhone(e.target.value);
     } else if (e.target.name === "password") {
+      setPassword(e.target.value);
       validatePassword(e.target.value);
     }
 
@@ -40,61 +51,49 @@ const JobseekerRegister = () => {
   };
 
   const handleSubmit = (e) => {
-    if (
-      !firstNameError &&
-      !lastNameError &&
-      !emailError &&
-      !phoneError &&
-      !passwordError &&
-      uniqueEmailTest()
-    ) {
-      e.preventDefault();
-      registerJobSeekerAPI(formData);
-      navigate("/jobseeker/registersuccess");
-    } else {
-      e.preventDefault();
-    }
-  };
+    const getUpdatedProfile = async () => {
+      const response = await editEmployerProfileAPI(formData);
+      console.log(response);
+      window.localStorage.setItem("employerData", JSON.stringify([response]));
+    };
 
-  const uniqueEmail = async (email) => {
     try {
-      const response = await checkUniqueEmailAPI(email);
-
-      if (response.length == 0) {
-        setUniqueEmailReturn(true);
-        console.log("pass");
+      if (!emailError && !passwordError && uniqueEmailTest()) {
+        e.preventDefault();
+        getUpdatedProfile();
+        navigate("/employer/profilesuccess");
       } else {
-        setUniqueEmailReturn(false);
-        console.log("fail");
+        e.preventDefault();
+        console.log("submit fail");
       }
     } catch (error) {
       console.log(error);
     }
   };
 
+  const uniqueEmail = async (email) => {
+    try {
+      const response = await checkEmployerUniqueEmailAPI(email);
+      setUniqueEmailReturn(response);
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const uniqueEmailTest = () => {
-    if (uniqueEmailReturn) {
+    if (uniqueEmailReturn.length === 0) {
       setUniqueEmailError(false);
+      console.log("pass1");
+      return true;
+    } else if (uniqueEmailReturn[0].id === formData.id) {
+      setUniqueEmailError(false);
+      console.log("pass2");
       return true;
     } else {
       setUniqueEmailError(true);
+      console.log("fail");
       return false;
-    }
-  };
-
-  const validateFirstName = (firstName) => {
-    if (/\d/.test(firstName)) {
-      setFirstNameError(true);
-    } else {
-      setFirstNameError(false);
-    }
-  };
-
-  const validateLastName = (lastName) => {
-    if (/\d/.test(lastName)) {
-      setLastNameError(true);
-    } else {
-      setLastNameError(false);
     }
   };
 
@@ -113,14 +112,6 @@ const JobseekerRegister = () => {
     }
   };
 
-  const validatePhone = (phone) => {
-    if (/^\d+$/.test(phone) || phone === "") {
-      setPhoneError(false);
-    } else {
-      setPhoneError(true);
-    }
-  };
-
   const validatePassword = (password) => {
     if (password.length < 7 && password !== "") {
       setPasswordError(true);
@@ -131,55 +122,23 @@ const JobseekerRegister = () => {
 
   return (
     <>
-      <NavBar />
+      <Navbar />
       <div className={styles.modalContainer}>
-        <h2>JobSeeker Register</h2>
+        <h2>Update Employer Profile</h2>
         {uniqueEmailError ? <h2>Email taken... Please try again</h2> : <div />}
 
         <form onSubmit={handleSubmit}>
           <div className="inputControl">
-            {firstNameError ? (
-              <div className="error">
-                <div className={styles.error}>
-                  <p>Please enter a valid first name</p>
-                </div>
-              </div>
-            ) : (
-              <div></div>
-            )}
-
             <div className={styles.inputBox}>
               <input
                 type="text"
                 className={styles.inputField}
-                name="firstName"
+                name="name"
                 required
                 onChange={handleChange}
+                value={companyName}
               />
-              <label className={styles.label}>First Name:</label>
-            </div>
-          </div>
-
-          <div className="inputControl">
-            {lastNameError ? (
-              <div className="error">
-                <div className={styles.error}>
-                  <p>Please enter a valid last name</p>
-                </div>
-              </div>
-            ) : (
-              <div></div>
-            )}
-
-            <div className={styles.inputBox}>
-              <input
-                type="text"
-                className={styles.inputField}
-                name="lastName"
-                required
-                onChange={handleChange}
-              />
-              <label className={styles.label}>Last Name:</label>
+              <label className={styles.label}>Company Name:</label>
             </div>
           </div>
 
@@ -201,31 +160,9 @@ const JobseekerRegister = () => {
                 name="email"
                 required
                 onChange={handleChange}
+                value={email}
               />
               <label className={styles.label}>Email:</label>
-            </div>
-          </div>
-
-          <div className="inputControl">
-            {phoneError ? (
-              <div className="error">
-                <div className={styles.error}>
-                  <p>Please enter a valid phone number</p>
-                </div>
-              </div>
-            ) : (
-              <div></div>
-            )}
-
-            <div className={styles.inputBox}>
-              <input
-                type="text"
-                className={styles.inputField}
-                name="phone"
-                required
-                onChange={handleChange}
-              />
-              <label className={styles.label}>Phone Number:</label>
             </div>
           </div>
 
@@ -247,13 +184,14 @@ const JobseekerRegister = () => {
                 name="password"
                 required
                 onChange={handleChange}
+                value={password}
               />
               <label className={styles.label}>Password:</label>
             </div>
           </div>
 
           <button className={styles.submitBtn} type="submit">
-            Register
+            Update Profile
           </button>
         </form>
       </div>
@@ -261,4 +199,4 @@ const JobseekerRegister = () => {
   );
 };
 
-export default JobseekerRegister;
+export default EmployerProfile;

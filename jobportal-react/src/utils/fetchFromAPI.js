@@ -2,6 +2,8 @@ import axios from "axios";
 
 const baseURL = "http://localhost:8080";
 
+// Job Seeker
+
 export const registerJobSeekerAPI = async (jobSeeker) => {
   const { data } = await axios.post(`${baseURL}/jobseeker/add`, jobSeeker);
   return data;
@@ -112,5 +114,29 @@ export const deleteSkillAPI = async (skill) => {
 
 export const getAllJobPosts = async () => {
   const { data } = await axios.get(`${baseURL}/jobpost/jobs`);
+  return data;
+};
+
+// Employer
+
+export const registerEmployerAPI = async (employer) => {
+  const { data } = await axios.post(`${baseURL}/employer/add`, employer);
+  return data;
+};
+
+export const checkEmployerUniqueEmailAPI = async (email) => {
+  const { data } = await axios.get(`${baseURL}/employer/uniqueemail/${email}`);
+  return data;
+};
+
+export const loginEmployerAPI = async (email, password) => {
+  const { data } = await axios.get(
+    `${baseURL}/employer/login/${email}/${password}`
+  );
+  return data;
+};
+
+export const editEmployerProfileAPI = async (employer) => {
+  const { data } = await axios.put(`${baseURL}/employer/edit`, employer);
   return data;
 };

@@ -6,9 +6,11 @@ import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   let [isLoggedIn, setIsLoggedIn] = useState(false);
+  let [isEmployer, setIsEmployer] = useState(false);
 
   useEffect(() => {
     setIsLoggedIn(JSON.parse(window.localStorage.getItem("isLoggedIn")));
+    setIsEmployer(JSON.parse(window.localStorage.getItem("isEmployer")));
   }, []);
 
   let navigate = useNavigate();
@@ -22,20 +24,49 @@ const Navbar = () => {
     return (
       <header>
         <nav>
-          <div>
-            <h2 className={styles.logo}>Job Portal</h2>
-          </div>
+          {isEmployer ? (
+            <div>
+              <Link to="/employer/home" className={styles.logo}>
+                <h2>Job Portal</h2>
+              </Link>
+            </div>
+          ) : (
+            <div>
+              <Link to="/jobseeker/home" className={styles.logo}>
+                <h2>Job Portal</h2>
+              </Link>
+            </div>
+          )}
+
           <ul>
-            <li>
-              <Link className={styles.Link} to="/jobseeker/resume">
-                Resume
-              </Link>
-            </li>
-            <li>
-              <Link className={styles.Link} to="/jobseeker/profile">
-                Profile
-              </Link>
-            </li>
+            {isEmployer ? (
+              <>
+                <li>
+                  <Link className={styles.Link} to="/employer/postjob">
+                    Post a Job
+                  </Link>
+                </li>
+                <li>
+                  <Link className={styles.Link} to="/employer/profile">
+                    Employer Profile
+                  </Link>
+                </li>
+              </>
+            ) : (
+              <>
+                <li>
+                  <Link className={styles.Link} to="/jobseeker/resume">
+                    Resume
+                  </Link>
+                </li>
+                <li>
+                  <Link className={styles.Link} to="/jobseeker/profile">
+                    Profile
+                  </Link>
+                </li>
+              </>
+            )}
+
             <li>
               <div className={styles.Link} onClick={logOut}>
                 Log Out
@@ -50,12 +81,14 @@ const Navbar = () => {
       <header>
         <nav>
           <div>
-            <h2 className={styles.logo}>Job Portal</h2>
+            <Link to="/" className={styles.logo}>
+              <h2>Job Portal</h2>
+            </Link>
           </div>
           <ul>
             <li>
-              <Link className={styles.Link} to="/jobseeker/register">
-                Register
+              <Link className={styles.Link} to="/employer/login">
+                Post a Job
               </Link>
             </li>
             <li>
