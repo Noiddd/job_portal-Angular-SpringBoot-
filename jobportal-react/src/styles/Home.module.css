@@ -1,5 +1,5 @@
 .homeContainer {
-  position: fixed;
+  position: relative;
   height: 100%;
   width: 100%;
   top: 150px;
@@ -8,29 +8,50 @@
 }
 
 .homeLeftContainer {
+  position: relative;
   width: 50%;
   margin-left: 7%;
 }
 
 .homeRightContainer {
+  position: fixed;
   width: 50%;
   margin-right: 7%;
 }
 .date {
-  margin-left: 4%;
+  margin-left: 2%;
+  top: 15%;
+
   font-size: 70px;
   font-weight: bold;
+  position: fixed;
+  z-index: 4;
 }
 
 .search {
+  margin-left: 2%;
+  top: 22%;
+  position: fixed;
+  z-index: 4;
 }
 
 .filter {
+  margin-left: 2%;
+  bottom: 73%;
+  position: fixed;
+  padding-right: 1000px;
+  padding-top: 300px;
+  background-color: #e5e5e5;
+  z-index: 3;
 }
 
 .jobList {
+  z-index: 2;
+  position: relative;
+  margin-top: 12.5%;
   display: flex;
   margin-left: 4%;
   gap: 30px 30px;
   flex-wrap: wrap;
+  overflow: auto;
 }

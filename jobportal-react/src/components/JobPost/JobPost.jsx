@@ -5,7 +5,7 @@ const JobPost = (props) => {
   let [skills, setSkills] = useState([]);
 
   useEffect(() => {
-    let skillsArray = props.jobData.skills.split(", ");
+    let skillsArray = props.jobData.skills.trim().split(",");
 
     const capitalizeWords = (arr) => {
       return arr.map((word) => {
@@ -20,6 +20,7 @@ const JobPost = (props) => {
   }, []);
 
   const openViewJob = () => {
+    console.log("test");
     props.viewJob(props.jobData);
   };
 

@@ -42,7 +42,25 @@
 
 .skills {
   position: fixed;
-  bottom: 150px;
+  bottom: 200px;
   display: flex;
   gap: 20px;
+}
+
+.applyButton {
+  cursor: pointer;
+  background: #accf7f;
+  box-sizing: border-box;
+  border-radius: 20px;
+  height: 50px;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  font-size: 15px;
+  font-weight: bold;
+  width: 200px;
+  position: fixed;
+  bottom: 120px;
+  display: flex;
+  right: 22.5%;
 }

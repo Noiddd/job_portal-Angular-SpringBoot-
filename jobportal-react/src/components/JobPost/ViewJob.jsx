@@ -4,6 +4,7 @@ import SkillBubble from "./SkillBubble";
 
 const ViewJob = (props) => {
   let [skills, setSkills] = useState([]);
+  let [jobSeekerView, setJobSeekerView] = useState(true);
 
   useEffect(() => {
     let skillsArray = props.viewJobData.skills.split(", ");
@@ -20,6 +21,8 @@ const ViewJob = (props) => {
     setSkills(capitalizeWords(skillsArray));
   }, [props.viewJobData]);
 
+  const onApply = () => {};
+
   return (
     <div className={styles.viewJobContainer}>
       <div className={styles.employerName}>
@@ -33,6 +36,12 @@ const ViewJob = (props) => {
           return <SkillBubble key={index} skill={skill} />;
         })}
       </div>
+
+      {jobSeekerView && (
+        <div onClick={onApply} className={styles.applyButton}>
+          Apply
+        </div>
+      )}
     </div>
   );
 };

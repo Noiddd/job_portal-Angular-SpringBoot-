@@ -140,3 +140,11 @@ export const editEmployerProfileAPI = async (employer) => {
   const { data } = await axios.put(`${baseURL}/employer/edit`, employer);
   return data;
 };
+
+export const addJobPost = async (job, employerId) => {
+  const { data } = await axios.put(
+    `${baseURL}/employer/addjobpost/${employerId}`,
+    job
+  );
+  return data;
+};

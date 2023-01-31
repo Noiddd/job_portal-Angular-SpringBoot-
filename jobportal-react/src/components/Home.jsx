@@ -30,8 +30,6 @@ const Home = () => {
     console.log(viewJobData);
   };
 
-  useEffect(() => {}, [viewJobData]);
-
   return (
     <>
       <Navbar />

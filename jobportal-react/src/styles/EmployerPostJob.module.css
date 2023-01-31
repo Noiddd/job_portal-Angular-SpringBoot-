@@ -2,7 +2,7 @@
   position: fixed;
   top: 50%;
   left: 50%;
-  width: 400px;
+  width: 600px;
   padding: 40px;
   transform: translate(-50%, -50%);
   background: #fda16e;
@@ -28,7 +28,7 @@
   padding: 10px 0;
   font-size: 16px;
   color: black;
-  margin-bottom: 30px;
+  margin-bottom: 50px;
   border: none;
   border-bottom: 1px solid black;
   outline: none;
@@ -37,22 +37,15 @@
 
 .label {
   position: absolute;
-  top: 0;
-  left: 0;
-  padding: 10px 0;
+  padding: 0px 0;
   font-size: 16px;
   color: black;
   pointer-events: none;
   transition: 0.5s;
   font-size: 18px;
-}
-
-.inputField:focus ~ label,
-.inputField:valid ~ label {
   top: -20px;
   left: 0;
   color: black;
-  font-size: 12px;
 }
 
 .submitBtn {
@@ -109,34 +102,24 @@
   border: white 1px solid;
 }
 
-.error {
-  margin-bottom: 15px;
+.salaryError {
+  position: absolute;
+  top: 235px;
+  font-size: 15px;
+}
+
+.skillsError {
+  position: absolute;
+  top: 325px;
+  font-size: 15px;
+}
+
+.jobDescriptionError {
+  position: absolute;
+  top: 145px;
   font-size: 15px;
 }
 
 .newUser {
   margin-bottom: 10px;
-}
-
-.form {
-  display: flex;
-  gap: 20px;
-}
-
-.modalContainerSuccess {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  width: 500px;
-  padding: 40px;
-  transform: translate(-50%, -50%);
-  background: #fda16e;
-  box-sizing: border-box;
-  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
-  border-radius: 10px;
-  z-index: 999999999;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
 }
