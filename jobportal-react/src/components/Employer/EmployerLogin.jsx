@@ -30,7 +30,6 @@ const EmployerLogin = () => {
           window.localStorage.setItem("employerData", JSON.stringify(response));
           window.localStorage.setItem("isLoggedIn", JSON.stringify(true));
           window.localStorage.setItem("isEmployer", JSON.stringify(true));
-          console.log(response);
           setInputError(false);
           navigate("/employer/home");
         }

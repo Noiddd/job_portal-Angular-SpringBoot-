@@ -1,47 +1,28 @@
 import React, { useState, useEffect } from "react";
-import { Navbar } from "../index";
-import { getAllJobPosts } from "../../utils/fetchFromAPI";
+import Navbar from "../Navbar";
+import { getAppliedJobs } from "../../utils/fetchFromAPI";
 import styles from "../../styles/Home.module.css";
 import JobPost from "../JobPost/JobPost";
 import ViewJob from "../JobPost/ViewJob";
-import ApplyJobSuccess from "../JobPost/ApplyJobSuccess";
 
-const JobseekerHome = () => {
+const JobseekerJobsApplied = () => {
   let [jobsData, setJobsData] = useState([]);
   let [currentDay, setCurrentDay] = useState("");
   let [currentMonth, setCurrentMonth] = useState("");
   let [viewJobData, setViewJobData] = useState({});
   let [openViewJob, setOpenViewJob] = useState(false);
 
-  let [showApplyJobSuccess, setShowApplyJobSuccess] = useState(false);
-
-  const openApplyJobSuccess = () => {
-    setShowApplyJobSuccess(true);
-  };
-
-  const hideApplyJobSuccess = () => {
-    setShowApplyJobSuccess(false);
-  };
-
   useEffect(() => {
-    const getAllJobs = async () => {
-      const allJobsData = await getAllJobPosts();
-      setJobsData(allJobsData);
+    const jobSeekerId = JSON.parse(
+      window.localStorage.getItem("jobSeekerData")
+    )[0].id;
+
+    const getAllAppliedJobs = async (jobSeekerId) => {
+      const allAppliedJobsData = await getAppliedJobs(jobSeekerId);
+      setJobsData(allAppliedJobsData);
     };
 
-    getAllJobs();
-
-    setCurrentMonth(new Date().toLocaleString("en-US", { month: "long" }));
-    setCurrentDay(new Date().toLocaleString("en-US", { day: "2-digit" }));
-  }, [showApplyJobSuccess]);
-
-  useEffect(() => {
-    const getAllJobs = async () => {
-      const allJobsData = await getAllJobPosts();
-      setJobsData(allJobsData);
-    };
-
-    getAllJobs();
+    getAllAppliedJobs(jobSeekerId);
 
     setCurrentMonth(new Date().toLocaleString("en-US", { month: "long" }));
     setCurrentDay(new Date().toLocaleString("en-US", { day: "2-digit" }));
@@ -55,12 +36,7 @@ const JobseekerHome = () => {
 
   return (
     <>
-      <Navbar></Navbar>
-
-      {showApplyJobSuccess && (
-        <ApplyJobSuccess hideApplyJobSuccess={hideApplyJobSuccess} />
-      )}
-
+      <Navbar />
       <div className={styles.homeContainer}>
         <div className={styles.homeLeftContainer}>
           <div className={styles.date}>
@@ -77,10 +53,7 @@ const JobseekerHome = () => {
 
         <div className={styles.homeRightContainer}>
           {openViewJob && (
-            <ViewJob
-              viewJobData={viewJobData}
-              openApplyJobSuccess={openApplyJobSuccess}
-            />
+            <ViewJob viewJobData={viewJobData} viewAppliedJob={true} />
           )}
         </div>
       </div>
@@ -88,4 +61,4 @@ const JobseekerHome = () => {
   );
 };
 
-export default JobseekerHome;
+export default JobseekerJobsApplied;

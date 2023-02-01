@@ -1,0 +1,113 @@
+.jobContainer {
+  background: #accf7f;
+  box-sizing: border-box;
+  border-radius: 30px;
+  width: 700px;
+  min-height: 600px;
+}
+
+.name {
+  font-size: 35px;
+  font-weight: bold;
+  margin-top: 25px;
+  margin-left: 30px;
+}
+
+.email {
+  font-size: 25px;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-left: 30px;
+}
+
+.phone {
+  font-size: 25px;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-left: 30px;
+}
+
+.skillsList {
+  display: flex;
+  margin-bottom: 50px;
+  padding-left: 30px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.skillTitle {
+  font-size: 25px;
+  font-weight: bold;
+  margin-top: 25px;
+  margin-left: 30px;
+}
+
+.empploymentHistoryTitle {
+  font-size: 25px;
+  font-weight: bold;
+  margin-top: 25px;
+  margin-left: 30px;
+}
+
+.employmentHistoryList {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 50px;
+  padding-left: 30px;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.educationTitle {
+  font-size: 25px;
+  font-weight: bold;
+  margin-top: 25px;
+  margin-left: 30px;
+}
+
+.educationList {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 50px;
+  padding-left: 30px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.buttons {
+  display: flex;
+  gap: 30px;
+  width: 100%;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.accept {
+  cursor: pointer;
+  background: #83ecfa;
+  box-sizing: border-box;
+  border-radius: 20px;
+  height: 50px;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  font-size: 15px;
+  font-weight: bold;
+  width: 200px;
+  display: flex;
+}
+
+.reject {
+  cursor: pointer;
+  background: #f582a9;
+  box-sizing: border-box;
+  border-radius: 20px;
+  height: 50px;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  font-size: 15px;
+  font-weight: bold;
+  width: 200px;
+  display: flex;
+}

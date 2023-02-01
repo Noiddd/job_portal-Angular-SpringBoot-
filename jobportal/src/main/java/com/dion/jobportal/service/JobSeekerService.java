@@ -152,7 +152,6 @@ public class JobSeekerService  {
         jobPost.addJobSeekerApplied(jobSeeker);
 
         em.persist(jobSeeker);
-
     }
 
     // get all applied jobs

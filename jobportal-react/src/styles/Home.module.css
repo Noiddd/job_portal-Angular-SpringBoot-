@@ -55,3 +55,14 @@
   flex-wrap: wrap;
   overflow: auto;
 }
+
+.applicantList {
+  z-index: 2;
+  position: relative;
+  margin-top: 12.4%;
+  display: flex;
+  margin-left: 5%;
+  gap: 30px 30px;
+  flex-wrap: wrap;
+  overflow: auto;
+}

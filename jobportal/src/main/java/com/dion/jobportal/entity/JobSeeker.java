@@ -43,6 +43,9 @@ public class JobSeeker implements Serializable {
     @JsonIgnore
     private List<JobPost> appliedJobsList = new ArrayList<>();
 
+    @OneToMany(mappedBy = "jobSeeker")
+    List<JobSeekerJobPost> applicationStatus = new ArrayList<>();
+
     public JobSeeker(String firstName, String lastName, String phone, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -54,6 +57,16 @@ public class JobSeeker implements Serializable {
     public JobSeeker() {
 
     }
+
+    public List<JobSeekerJobPost> getApplicationStatus() {
+        return applicationStatus;
+    }
+
+    public void setApplicationStatus(List<JobSeekerJobPost> applicationStatus) {
+        this.applicationStatus = applicationStatus;
+    }
+
+
 
     public void addEmploymentHistory(EmploymentHistory employmentHistory){
         if(employmentHistoryList == null){

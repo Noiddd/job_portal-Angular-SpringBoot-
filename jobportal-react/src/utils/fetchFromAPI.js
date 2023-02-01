@@ -117,6 +117,22 @@ export const getAllJobPosts = async () => {
   return data;
 };
 
+export const applyJobPost = async (jobSeekerId, jobPost) => {
+  const { data } = await axios.put(
+    `${baseURL}/jobseeker/applyjobpost/${jobSeekerId}`,
+    jobPost
+  );
+  return data;
+};
+
+export const getAppliedJobs = async (jobSeekerId) => {
+  const { data } = await axios.get(
+    `${baseURL}/jobseeker/appliedjobs/${jobSeekerId}`
+  );
+
+  return data;
+};
+
 // Employer
 
 export const registerEmployerAPI = async (employer) => {
@@ -146,5 +162,13 @@ export const addJobPost = async (job, employerId) => {
     `${baseURL}/employer/addjobpost/${employerId}`,
     job
   );
+  return data;
+};
+
+export const getAllJobsPostedByEmployer = async (employerId) => {
+  const { data } = await axios.get(
+    `${baseURL}/employer/jobsposted/${employerId}`
+  );
+
   return data;
 };

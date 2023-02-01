@@ -41,6 +41,9 @@ public class JobPost implements Serializable {
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "appliedJobsList")
     private List<JobSeeker> jobSeekerAppliedList = new ArrayList<>();
 
+    @OneToMany(mappedBy = "jobPost")
+    List<JobSeekerJobPost> applicationStatus;
+
     public JobPost(String jobTitle, String description, String salary, String skills, String listingStatus, String employerName) {
         this.jobTitle = jobTitle;
         this.description = description;
@@ -52,6 +55,14 @@ public class JobPost implements Serializable {
 
     public JobPost(){
 
+    }
+
+    public List<JobSeekerJobPost> getApplicationStatus() {
+        return applicationStatus;
+    }
+
+    public void setApplicationStatus(List<JobSeekerJobPost> applicationStatus) {
+        this.applicationStatus = applicationStatus;
     }
 
     public void addJobSeekerApplied(JobSeeker jobSeeker){

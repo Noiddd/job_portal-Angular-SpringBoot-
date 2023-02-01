@@ -19,6 +19,7 @@ import EmployerProfile from "./components/Employer/Employer-Profile/EmployerProf
 import EmployerProfileSuccess from "./components/Employer/Employer-Profile/EmployerProfileSuccess";
 import EmployerPostJob from "./components/Employer/Employer-PostJob/EmployerPostJob";
 import EmployerPostJobSuccess from "./components/Employer/Employer-PostJob/EmployerPostJobSuccess";
+import JobseekerJobsApplied from "./components/Jobseeker/JobseekerJobsApplied";
 
 const App = () => {
   return (
@@ -57,6 +58,10 @@ const App = () => {
         <Route
           path="/employer/postjobsuccess"
           element={<EmployerPostJobSuccess />}
+        ></Route>
+        <Route
+          path="/jobseeker/appliedjobs"
+          element={<JobseekerJobsApplied />}
         ></Route>
       </Routes>
     </>

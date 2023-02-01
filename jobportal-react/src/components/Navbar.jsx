@@ -55,6 +55,11 @@ const Navbar = () => {
             ) : (
               <>
                 <li>
+                  <Link className={styles.Link} to="/jobseeker/appliedjobs">
+                    Applied Jobs
+                  </Link>
+                </li>
+                <li>
                   <Link className={styles.Link} to="/jobseeker/resume">
                     Resume
                   </Link>
