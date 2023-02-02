@@ -15,6 +15,9 @@ const JobseekerHome = () => {
 
   let [showApplyJobSuccess, setShowApplyJobSuccess] = useState(false);
 
+  let [searchInput, setSearchInput] = useState("");
+  let [filteredData, setFilteredData] = useState([]);
+
   const openApplyJobSuccess = () => {
     setShowApplyJobSuccess(true);
   };
@@ -47,6 +50,21 @@ const JobseekerHome = () => {
     setCurrentDay(new Date().toLocaleString("en-US", { day: "2-digit" }));
   }, []);
 
+  useEffect(() => {
+    if (searchInput.length === 0) {
+      setFilteredData([]);
+    } else {
+      const filterArray = jobsData.filter((job) => {
+        return job.jobTitle.toLowerCase().includes(searchInput);
+      });
+      setFilteredData(filterArray);
+    }
+  }, [searchInput, jobsData]);
+
+  const changeSearch = (e) => {
+    setSearchInput(e.target.value);
+  };
+
   const viewJob = (viewJobData) => {
     setOpenViewJob(true);
     setViewJobData(viewJobData);
@@ -66,13 +84,28 @@ const JobseekerHome = () => {
           <div className={styles.date}>
             Today, {currentDay} {currentMonth}
           </div>
-          <div className={styles.search}>Search Bar</div>
-          <div className={styles.filter}>filter buttons</div>
-          <div className={styles.jobList}>
-            {jobsData.map((job, index) => {
-              return <JobPost key={index} jobData={job} viewJob={viewJob} />;
-            })}
+          <div className={styles.search}>
+            <input
+              className={styles.searchBar}
+              type="text"
+              value={searchInput}
+              onChange={changeSearch}
+            />
           </div>
+          {/* <div className={styles.filter}>filter buttons</div> */}
+          {searchInput.length === 0 ? (
+            <div className={styles.jobList}>
+              {jobsData.map((job, index) => {
+                return <JobPost key={index} jobData={job} viewJob={viewJob} />;
+              })}
+            </div>
+          ) : (
+            <div className={styles.jobList}>
+              {filteredData.map((job, index) => {
+                return <JobPost key={index} jobData={job} viewJob={viewJob} />;
+              })}
+            </div>
+          )}
         </div>
 
         <div className={styles.homeRightContainer}>

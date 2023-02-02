@@ -88,8 +88,7 @@ public class EmployerService {
     // edit applicantion status
     @Transactional
     public List<JobSeekerJobPost> editApplicationStatus(int jobSeekerId, int jobPostId){
-        TypedQuery<JobSeekerJobPost> query =  em.createQuery("select jsjp from JobSeekerJobPost jsjp where jsjp.jobpost_Id like ?1 and jsjp.jobseeker_id like ?2", JobSeekerJobPost.class).setParameter(1, jobPostId).setParameter(2, jobSeekerId);
-
-        return query.getResultList();
+        List<JobSeekerJobPost> jobSeekerJobPost = jobSeekerJobPostRepository.findAll();
+        return jobSeekerJobPost;
     }
 }
