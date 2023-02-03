@@ -13,7 +13,7 @@ const ViewJob = (props) => {
   let [viewApplicants, setViewApplicants] = useState(false);
 
   useEffect(() => {
-    let skillsArray = props.viewJobData.skills.split(", ");
+    let skillsArray = props.viewJobData.skills.trim().split(",");
 
     const capitalizeWords = (arr) => {
       return arr.map((word) => {

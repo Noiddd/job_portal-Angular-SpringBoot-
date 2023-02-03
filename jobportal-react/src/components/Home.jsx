@@ -63,9 +63,10 @@ const Home = () => {
               type="text"
               value={searchInput}
               onChange={changeSearch}
+              placeholder="Search jobs here..."
             />
           </div>
-          {/* <div className={styles.filter}>filter buttons</div> */}
+          <div className={styles.filter}>filter buttons</div>
           {searchInput.length === 0 ? (
             <div className={styles.jobList}>
               {jobsData.map((job, index) => {
